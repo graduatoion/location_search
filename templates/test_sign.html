@@ -1,0 +1,48 @@
+<html>
+<title>sign_up and login test</title>
+<head>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<input id="phoneId" value="13613142580">
+<input id="password" value="password">
+<div id='status'></div>
+<button id="push">提交</button>
+
+
+<script>
+
+$("#push").click(function(){
+	
+	var phoneId = $("#phoneId").val()
+	var password = $("#password").val()
+	$.ajax({
+                    type:'POST',
+                    url:'http://127.0.0.1:8099/main/signUp/',
+                    data:{
+                        "phoneId":phoneId,
+                        "password":password,
+                    },
+                    success : function (data) {
+                   
+						console.log(data)
+						
+                    },
+                    error : function () {
+                        
+                        console.log('error')
+                    }
+                })
+
+}
+);
+
+</script>
+
+</body>
+
+
+</html>

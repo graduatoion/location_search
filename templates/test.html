@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="email=no" name="format-detection">
+        <title>获取地理位置并显示</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                font-size: 16px;
+            }
+            html{
+                height:100%;
+            }
+            body{
+                height:100%;
+            }
+            .map {
+                width: 100%;
+                /*height: 400px;*/
+                height:100%;
+            }
+
+            .btn-box {
+                position:fixed;
+                bottom:1rem;
+                left:0;
+                width: 100%;
+                display: flex;
+                display: -webkit-flex;
+                justify-content: space-around;
+                justify-content: -webkit-space-around;
+                align-items: center;
+                align-items: -webkit-center;
+            }
+
+            .btn {
+                border-radius:50%;
+                text-align: center; 
+                opacity:0.7; 
+                cursor:pointer;
+            }
+            .btn-aside{
+                width:3rem;
+                height:3rem;
+                line-height:3rem;
+                font-size:0.8rem;
+                color:#33CC99;
+                background-color:#ccc;
+                border:2px solid #33CC99;
+                
+            }
+            .tips {
+                margin-top: 10px;
+                text-align: center;
+            }
+            .btn-get{
+                /*background-image: url(ding.png);*/
+                background-image: url(http://123.207.31.244:8080/2603925009570222526.png);
+            }
+            .btn-show{
+               /* background-image:url(mark.png);*/
+                background-image:url(http://123.207.31.244:8080/2600547309849702533.png);
+
+            }
+            .btn-code{
+                width:7rem;
+                height:7rem;
+                line-height:7rem;
+                color:#ccc;
+                font-size:1.5rem;
+                font-weight:bold;
+                background-color: #33CC99;
+            }
+            #mark{
+                position:absolute;
+                width:3.5rem;
+                height:3.5rem;
+                /*background-image:url(center.png);*/
+                background-image:url(http://123.207.31.244:8080/2596325185199048035.png);
+                z-index:999;
+                opacity:0.8;
+            }
+        </style>
+        <script src="http://api.map.baidu.com/api?v=2.0&ak=ayNGk6jqeEfH7sDIztpvlaLk2iPuI7jg"></script>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+{#        <script src="http://console.hongliang.org/js/console.min.js?nRNL1ney"></script>#}
+
+    </head>
+
+    <body>
+        <div id="showmap" class="map">
+        </div>
+        <div class="btn-box">
+            <div class="btn btn-get btn-aside">
+                
+            </div>
+            <div class="btn btn-code"><i></i>扫码用车</div>
+            <div class="btn btn-show btn-aside">
+                
+            </div>
+        </div>
+        <div id="mark"></div>
+        <div class="tips"></div>
+        <script>
+            var currentPoint = {
+                latAndLong: [116.404, 39.915],
+                name: "这是默认的位置"
+            };
+            var viewRange = {
+                lng_left:0,
+                lng_right:360,
+                lat_left:0,
+                lat_right:360
+            };
+            //在地图中心设置标注点
+            var pos_left = $(window).width()/2-28;
+            var pos_top = $(window).height()/2-28;
+            $('#mark').css({
+                top:pos_top,
+                left:pos_left
+            });
+
+            //使用谷歌原生api获取地理位置信息
+            function getLocation_useGeo(callBack){
+                if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var lat = position.coords.latitude; //纬度
+                        var lng = position.coords.longitude; //经度
+                        console.log('current location '+'lat:'+lat+'  '+'lng:'+lng);
+                        var gpsPoint = new BMap.Point(lng, lat);
+                        var convertor = new BMap.Convertor();
+                        var pointArr = [];
+                        pointArr.push(gpsPoint);
+                        convertor.translate(pointArr, 1, 5, function (data) {
+
+                        currentPoint.latAndLong = (data.points[0].lng + ',' + data.points[0].lat).split(',');
+                        callBack();
+
+                    });
+                    },function () {
+                        getLocation_useBaiDuApi(mapCreate);
+                        document.querySelector(".btn-get").addEventListener('click', function() {
+                            getLocation_useBaiDuApi(reLocate);
+                        });
+                    });
+                }
+                else{
+                    alert('不支持谷歌原生定位api')
+                }
+            }
+            //使用百度api获取地理位置信息（但是获取位置不准确）
+            function getLocation_useBaiDuApi(callBack) {
+                var geolocation = new BMap.Geolocation();
+                geolocation.getCurrentPosition(function(r){
+                if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                    var gpsPoint = new BMap.Point(r.point.lng, r.point.lat);
+                    var convertor = new BMap.Convertor();
+                    var pointArr = [];
+                    pointArr.push(gpsPoint);
+                    convertor.translate(pointArr, 1, 5, function (data) {
+                        currentPoint.latAndLong = (data.points[0].lng + ',' + data.points[0].lat).split(',')
+                        console.log('current location:'+data.points[0].lat+','+data.points[0].lng);
+                        callBack();
+                        document.querySelector(".btn-get").addEventListener('click', function() {
+                            getLocation_useBaiDuApi(reLocate);
+                        });
+                    });
+
+                }
+                else {
+                    alert('failed'+this.getStatus());
+                }
+            });
+            }
+
+            function onGeoSuccess(position) {
+                var lat = position.coords.latitude; //纬度
+                var lng = position.coords.longitude; //经度
+                //数据操作
+                currentPoint.latAndLong = (lng + ',' + lat).split(',');
+                currentPoint.name = '我的位置';
+                                alert(currentPoint.latAndLong);
+                document.querySelector(".tips").innerText = currentPoint.name + '纬度:' + lat + ',经度:' + lng;
+                var translateCallback = function (data) {
+                    if(data.status === 0){
+                        currentPoint.latAndLong = data.points[0];
+                    }
+                };
+
+                var convertor = new BMap.Convertor();
+                var pointArr = [];
+                pointArr.push(gpsPoint);
+                convertor.translate(pointArr, 1, 5, newMap);
+            }
+
+            function onGeoError(error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        document.querySelector(".tips").innerText = "定位失败,您已拒绝请求地理定位";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        document.querySelector(".tips").innerText = "定位失败,位置信息是不可用";
+                        break;
+                    case error.TIMEOUT:
+                        document.querySelector(".tips").innerText = "定位失败,请求获取用户位置超时";
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        document.querySelector(".tips").innerText = "定位失败,定位系统失效";
+                        break;
+                }
+            }
+            function mapCreate() {
+
+                map = new BMap.Map("showmap");
+                var point = new BMap.Point(currentPoint.latAndLong[0], currentPoint.latAndLong[1]);
+                map.centerAndZoom(point ,14);
+                map.enableScrollWheelZoom(true);
+                getViewRange(getBikeLocation)
+            }
+            function reLocate(){
+                map.clearOverlays();
+                var point = new BMap.Point(currentPoint.latAndLong[0], currentPoint.latAndLong[1]);
+                map.centerAndZoom(point,15);
+                map.panTo(point);
+                getViewRange(getBikeLocation);
+            }
+            function getViewRange(callBack){
+                var range = map.getBounds();
+                var sw = range.getSouthWest();//获取左下角（西南）
+                var ne = range.getNorthEast();//获取右上角（东北）
+                viewRange.lat_left = sw.lat;
+                viewRange.lat_right = ne.lat;
+                viewRange.lng_left = sw.lng;
+                viewRange.lng_right = ne.lng;
+                console.log(viewRange);
+                callBack()
+            }
+            function getBikeLocation(){
+
+                $.ajax({
+                    type:'POST',
+                    url:'http://192.168.0.105:8099/main/getBikeLatLng',
+                    data:{
+                        "lon_left":viewRange.lng_left,
+                        "lon_right":viewRange.lng_right,
+                        "lat_left":viewRange.lat_left,
+                        "lat_right":viewRange.lat_right
+                    },
+                    success : function (data) {
+                        console.log('success');
+                        var bikeList = jQuery.parseJSON(data);
+                        for(var i=0;i<bikeList.length;i++){
+                            var myIcon = new BMap.Icon("http://123.207.31.244:8080/bike.png", new BMap.Size(50, 50)); //更换图标
+                            var point = new BMap.Point(bikeList[i].bikeLongitude,bikeList[i].bikeLatitude);
+
+                            var marker = new BMap.Marker(point,{
+                                icon:myIcon
+                            });
+                            map.addOverlay(marker)
+                        }
+                    },
+                    error : function () {
+                        alert('error');
+                        console.log('error')
+                    }
+                })
+
+            }
+
+            var map;
+            getLocation_useGeo(mapCreate);
+            document.querySelector(".btn-get").addEventListener('click', function() {
+                getLocation_useGeo(reLocate);
+            });
+
+
+          
+        </script>
+    </body>
+
+</html>
