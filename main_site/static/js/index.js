@@ -14,7 +14,7 @@
             var $password = $('#password').val();
             $.ajax({
                 type: 'post',
-                url: 'main/login/',
+                url: '/main/login/',
                 data:{
                     'phoneId':$phoneId,
                     'password':$password
@@ -117,7 +117,7 @@
             console.log($phoneId+'__'+$password);
             $.ajax({
                 type: 'post',
-                url: 'main/signUp/',
+                url: '/main/signUp/',
                 data:{
                     'phoneId':$phoneId,
                     'password':$password
@@ -160,14 +160,14 @@ $(document).ready(function(){
     //判断登陆状态
     $.ajax({
         type:'get',
-        url:'main/isLogin/',
+        url:'/main/isLogin/',
         success : function(data){
             if(data=="ok"){
                     isLogin = true;
                     //显示用户昵称
                     $.ajax({
                     type:'get',
-                    url:'main/getPhoneId/',
+                    url:'/main/getPhoneId/',
                     success:function(data){
                             $('#login-register').text(data);
                          }
@@ -177,6 +177,7 @@ $(document).ready(function(){
     //扫码功能
     $('#scan-code').click(function(){
         if(isLogin){
+            window.location.href="/main/scanQr/";
             //进行扫码操作
         }else{
             //跳转到登录页面
@@ -188,7 +189,7 @@ $(document).ready(function(){
     $('#log-off').click(function(){
     	$.ajax({
     		type:'get',
-    		url:'main/logOut/',
+    		url:'/main/logOut/',
     		success:function(data){
     			isLogin = false;
     			$('#login-register').text('注册登录');

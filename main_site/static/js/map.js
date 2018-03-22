@@ -144,7 +144,7 @@ var map = null;
 
                 $.ajax({
                     type:'POST',
-                    url:'main/getBikeLatLng',
+                    url:'/main/getBikeLatLng',
                     data:{
                         "lon_left":viewRange.lng_left,
                         "lon_right":viewRange.lng_right,
