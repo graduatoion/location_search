@@ -5,33 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/main_site/admin.py" line="21" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab9634b5-ea37-488d-9b95-d82e18101741" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/main_site/static/js/index.js" afterPath="$PROJECT_DIR$/main_site/static/js/index.js" />
-      <change beforePath="$PROJECT_DIR$/main_site/static/js/map.js" afterPath="$PROJECT_DIR$/main_site/static/js/map.js" />
-      <change beforePath="$PROJECT_DIR$/main_site/urls.py" afterPath="$PROJECT_DIR$/main_site/urls.py" />
-      <change beforePath="$PROJECT_DIR$/main_site/views.py" afterPath="$PROJECT_DIR$/main_site/views.py" />
-      <change beforePath="$PROJECT_DIR$/templates/video/alignpat.js" afterPath="$PROJECT_DIR$/main_site/static/js/alignpat.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/bitmat.js" afterPath="$PROJECT_DIR$/main_site/static/js/bitmat.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/bmparser.js" afterPath="$PROJECT_DIR$/main_site/static/js/bmparser.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/bug_log" afterPath="$PROJECT_DIR$/main_site/static/js/bug_log" />
-      <change beforePath="$PROJECT_DIR$/templates/video/datablock.js" afterPath="$PROJECT_DIR$/main_site/static/js/datablock.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/databr.js" afterPath="$PROJECT_DIR$/main_site/static/js/databr.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/datamask.js" afterPath="$PROJECT_DIR$/main_site/static/js/datamask.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/decoder.js" afterPath="$PROJECT_DIR$/main_site/static/js/decoder.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/detector.js" afterPath="$PROJECT_DIR$/main_site/static/js/detector.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/errorlevel.js" afterPath="$PROJECT_DIR$/main_site/static/js/errorlevel.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/findpat.js" afterPath="$PROJECT_DIR$/main_site/static/js/findpat.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/formatinf.js" afterPath="$PROJECT_DIR$/main_site/static/js/formatinf.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/gf256.js" afterPath="$PROJECT_DIR$/main_site/static/js/gf256.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/gf256poly.js" afterPath="$PROJECT_DIR$/main_site/static/js/gf256poly.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/grid.js" afterPath="$PROJECT_DIR$/main_site/static/js/grid.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/qrcode.js" afterPath="$PROJECT_DIR$/main_site/static/js/qrcode.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/rsdecoder.js" afterPath="$PROJECT_DIR$/main_site/static/js/rsdecoder.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/version.js" afterPath="$PROJECT_DIR$/main_site/static/js/version.js" />
-      <change beforePath="$PROJECT_DIR$/templates/video/video.html" afterPath="$PROJECT_DIR$/templates/video/video.html" />
-      <change beforePath="$PROJECT_DIR$/templates/video/webcam.js" afterPath="$PROJECT_DIR$/main_site/static/js/webcam.js" />
-    </list>
+    <list default="true" id="ab9634b5-ea37-488d-9b95-d82e18101741" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
-              <caret line="93" column="39" lean-forward="true" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
+              <caret line="93" column="39" lean-forward="false" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -72,7 +46,7 @@
       <file leaf-file-name="video.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/video/video.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
+            <state relative-caret-position="-79">
               <caret line="88" column="17" lean-forward="false" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="17" />
               <folding />
             </state>
@@ -213,7 +187,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="width" value="1369" />
     <option name="height" value="735" />
@@ -566,7 +540,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1303" height="780" extended-state="6" />
+    <frame x="-7" y="0" width="1303" height="780" extended-state="7" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -906,7 +880,7 @@
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
-          <caret line="93" column="39" lean-forward="true" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
+          <caret line="93" column="39" lean-forward="false" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -931,7 +905,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/video/video.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
+        <state relative-caret-position="-79">
           <caret line="88" column="17" lean-forward="false" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="17" />
           <folding />
         </state>
