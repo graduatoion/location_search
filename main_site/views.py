@@ -106,3 +106,8 @@ def logOut(request):
             return HttpResponse('ok')
         else:
             return HttpResponse('no')
+
+
+def scanQr(request):
+    if request.method == 'GET':
+        return render_to_response('video/video.html')

@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
-from main_site.views import main, getBikeLatLng, signUp, login, test_sign, isLogin, getPhoneId, logOut
+from main_site.views import main, getBikeLatLng, signUp, login, test_sign, \
+    isLogin, getPhoneId, logOut, scanQr
 
 urlpatterns = [
     url(r'test/$', main),
@@ -10,5 +11,6 @@ urlpatterns = [
     url(r'isLogin/$', isLogin),
     url(r'getPhoneId/$', getPhoneId),
     url(r'logOut/$', logOut),
+    url(r'scanQr/$', scanQr),
 
 ]
