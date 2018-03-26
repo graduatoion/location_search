@@ -87,7 +87,7 @@ function load(){
 }
 function read(a){
 	document.getElementById("result").innerHTML = a.toString();
-	$.ajax({
+	/*$.ajax({
 		type:'post',
 		url:'';
 		data:a;
@@ -96,6 +96,6 @@ function read(a){
 
 			}
 		}
-	})
+	})*/
 	console.log(a);//输出扫描后的信息
 }
