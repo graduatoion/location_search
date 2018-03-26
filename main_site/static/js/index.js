@@ -1,8 +1,8 @@
 /*
 * @Author: Administrator
 * @Date:   2018-03-12 15:27:01
-* @Last Modified by:   Administrator
-* @Last Modified time: 2018-03-23 10:59:28
+* @Last Modified by:   sivartTravis
+* @Last Modified time: 2018-03-26 16:30:30
 */
 
     //登陆部分的JavaScript代码
@@ -30,6 +30,7 @@
                     };
                     if(data =="ok"){
                         //$('#login-register').text($phoneId);
+                        isLogin = true;
                         $('#tip-login').text('登陆成功').show();
                         setTimeout(function(){
                             $('#tip-login').hide();
@@ -151,12 +152,7 @@
                 $('#shade-login').hide();
         })
 
-
-
-    })  
-
-$(document).ready(function(){
-    var isLogin = false;
+        var isLogin = false;
     //判断登陆状态
     $.ajax({
         type:'get',
@@ -174,26 +170,27 @@ $(document).ready(function(){
                     });
             }
         }});
-    //扫码功能
-    $('#scan-code').click(function(){
-        if(isLogin){
-            window.location.href="/main/scanQr/";
-            //进行扫码操作
-        }else{
-            //跳转到登录页面
-            $('host-interface').hide();
-            $('#shade-login').show();
-        }
-    })
-    //退出登录
-    $('#log-off').click(function(){
-    	$.ajax({
-    		type:'get',
-    		url:'/main/logOut/',
-    		success:function(data){
-    			isLogin = false;
-    			$('#login-register').text('注册登录');
-    		}
-    	})
-    })
-    })
+        //扫码功能
+        $('#scan-code').click(function(){
+            if(isLogin){
+                window.location.href="/main/scanQr/";
+                //进行扫码操作
+            }else{
+                //跳转到登录页面
+                $('host-interface').hide();
+                $('#shade-login').show();
+            }
+        })
+        //退出登录
+        $('#log-off').click(function(){
+            $.ajax({
+                type:'get',
+                url:'/main/logOut/',
+                success:function(data){
+                    isLogin = false;
+                    $('#login-register').text('注册登录');
+                }
+            })
+        })
+
+    })  
