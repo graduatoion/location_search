@@ -5,22 +5,25 @@ var gCtx = null
 function captureToCanvas(){
 
 	  try{
-            gCtx.drawImage(v,0,0);
+            gCtx.drawImage(v,0,0);//在canvas元素中绘出video的某一帧
             try{
-		qrcode.decode();
-                console.log('test');
+				qrcode.decode();//扫描二维码
+				console.log(qrcode.decode());
+                console.log('test');//扫描成功输出二维码的信息
+                document.getElementById('loading').style.display = "none";//隐藏掉加载动画
             }
             catch(e){       
-                console.log(e);
-                setTimeout(captureToCanvas, 500);
+                console.log(e);//未扫描出二维码，输出错误信息
+                setTimeout(captureToCanvas, 500);//500ms之后再重绘canvas
+                document.getElementById('loading').style.display = "block";
             };
         }
         catch(e){       
-                console.log(e);
-                setTimeout(captureToCanvas, 500);
+                console.log(e);//若失败，输出错误信息
+                setTimeout(captureToCanvas, 500);//500ms再重绘canvas
         };
 }
-
+//初始化canvas元素，形成一个矩形框
 function initCanvas(w,h){
 	
 	n = navigator;
@@ -84,6 +87,16 @@ function load(){
 	setwebcam();
 }
 function read(a){
-	document.getElementById("result").innerHTML = a.toString()
-	console.log(a);
+	document.getElementById("result").innerHTML = a.toString();
+	/*$.ajax({
+		type:'post',
+		url:'';
+		data:a;
+		success:function(data){
+			if(data=='ok'){
+
+			}
+		}
+	})*/
+	console.log(a);//输出扫描后的信息
 }
