@@ -8,8 +8,7 @@ function captureToCanvas(){
             gCtx.drawImage(v,0,0);//在canvas元素中绘出video的某一帧
             try{
 				qrcode.decode();//扫描二维码
-				console.log(qrcode.decode());
-                console.log('test');//扫描成功输出二维码的信息
+                console.log(qrcode.decode());//扫描成功输出二维码的信息
                 document.getElementById('loading').style.display = "none";//隐藏掉加载动画
             }
             catch(e){       
