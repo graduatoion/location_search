@@ -74,7 +74,11 @@ WSGI_APPLICATION = 'location_search.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
 #'ENGINE': 'mysql.connector.django',
+=======
+        #'ENGINE': 'mysql.connector.django',
+>>>>>>> 73a2f9c7d77fc91a997dae0b550ef0493ca96d87
         'NAME': 'location_test',
         'HOST': '123.207.31.244',
         'USER': 'testUser',

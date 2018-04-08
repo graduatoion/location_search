@@ -78,6 +78,7 @@ var map = null;
                     var convertor = new BMap.Convertor();
                     var pointArr = [];
                     pointArr.push(gpsPoint);
+                    //坐标转化（非百度坐标转换成百度坐标）
                     convertor.translate(pointArr, 1, 5, function (data) {
                         currentPoint.latAndLong = (data.points[0].lng + ',' + data.points[0].lat).split(',')
                         callBack();
@@ -97,7 +98,7 @@ var map = null;
 
                 map = new BMap.Map("showmap");
                 console.log("map info: ");
-                console.log(map)
+                console.log(map);
                 var point = new BMap.Point(currentPoint.latAndLong[0], currentPoint.latAndLong[1]);
                 map.centerAndZoom(point ,14);
                 map.enableScrollWheelZoom(true);
@@ -105,7 +106,7 @@ var map = null;
                 var marker = new BMap.Marker(point, {
                     icon: myIcon
                 }); // 创建标注
-                map.addOverlay(marker); // 将标注添加到地图中
+                map.addOverlay(marker); // 将标注添加到地图中(此标注即为当前位置)
                 getViewRange(function () {
                     var point = new BMap.Point(117.950,41.000);
                     var myIcon = new BMap.Icon("http://123.207.31.244:8080/static/peoicon.png", new BMap.Size(30, 30)); //更换图标
@@ -130,7 +131,7 @@ var map = null;
                 console.log('test')
             }
             function getViewRange(callBack){
-                var range = map.getBounds();
+                var range = map.getBounds();//获取地图的可视区域
                 var sw = range.getSouthWest();//获取左下角（西南）
                 var ne = range.getNorthEast();//获取右上角（东北）
                 viewRange.lat_left = sw.lat;
@@ -176,9 +177,17 @@ var map = null;
          console.log("create");
          getLocation_useGeo(mapCreate);
          document.querySelector(".btn-get").addEventListener('click', function() {
-            getLocation(reLocate);
 
-         });
+                           console.log('reLocate');
+                           getLocation_useGeo(reLocate);
+          });
 
-         });
+         //滑动屏幕时动态请求车辆的位置
+         document.getElementById('showmap').addEventListener('touchmove',function(e){
+            console.log('touching');
+            getLocation_useGeo(mapCreate);
+           
+         })
+
+         })
 
