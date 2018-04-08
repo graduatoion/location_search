@@ -152,7 +152,6 @@ var map = null;
                         "lat_right":viewRange.lat_right
                     },
                     success : function (data) {
-                        console.log('success');
                         var bikeList = jQuery.parseJSON(data);
                         for(var i=0;i<bikeList.length;i++){
                             console.log(bikeList[i]);
@@ -177,8 +176,9 @@ var map = null;
          console.log("create");
          getLocation_useGeo(mapCreate);
          document.querySelector(".btn-get").addEventListener('click', function() {
-                           getLocation_useGeo(reLocate);
-          });
+            getLocation(reLocate);
 
-         })
+         });
+
+         });
 
