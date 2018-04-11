@@ -99,14 +99,14 @@ var map = null;
                 var point = new BMap.Point(currentPoint.latAndLong[0], currentPoint.latAndLong[1]);
                 map.centerAndZoom(point ,14);
                 map.enableScrollWheelZoom(true);
-                var myIcon = new BMap.Icon("http://123.207.31.244:8080/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标
+                var myIcon = new BMap.Icon("/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标
                 var marker = new BMap.Marker(point, {
                     icon: myIcon
                 }); // 创建标注
                 map.addOverlay(marker); // 将标注添加到地图中(此标注即为当前位置)
                 getViewRange(function () {
                     var point = new BMap.Point(117.950,41.000);
-                    var myIcon = new BMap.Icon("http://123.207.31.244:8080/static/peoicon.png", new BMap.Size(30, 30)); //更换图标
+                    var myIcon = new BMap.Icon("/static/peoicon.png", new BMap.Size(30, 30)); //更换图标
                     var marker = new BMap.Marker(point,{
                         icon : myIcon
                     });
@@ -117,7 +117,7 @@ var map = null;
             function reLocate(){
                 map.clearOverlays();
                 var point = new BMap.Point(currentPoint.latAndLong[0], currentPoint.latAndLong[1]);
-                var myIcon = new BMap.Icon("http://123.207.31.244:8080/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标#}
+                var myIcon = new BMap.Icon("/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标#}
                 var marker = new BMap.Marker(point, {
                     icon: myIcon
                 }); // 创建标注
@@ -153,7 +153,7 @@ var map = null;
                         var bikeList = jQuery.parseJSON(data);
                         for(var i=0;i<bikeList.length;i++){
                             console.log(bikeList[i]);
-                            var myIcon = new BMap.Icon("http://123.207.31.244:8080/bike.png", new BMap.Size(50, 50)); //更换图标
+                            var myIcon = new BMap.Icon("/static/img/bike.png", new BMap.Size(50, 50)); //更换图标
                             var point = new BMap.Point(bikeList[i].bikeLongitude,bikeList[i].bikeLatitude);
 
                             var marker = new BMap.Marker(point,{
