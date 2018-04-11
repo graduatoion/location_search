@@ -58,11 +58,11 @@ var map = null;
                         callBack();
 
                     });
-                    },function () {
+                    },function (e) {
+                        console.log(e);
                         getLocation_useBaiDuApi(mapCreate);
-                        document.querySelector(".btn-get").addEventListener('click', function() {
-                            getLocation_useBaiDuApi(reLocate);
-                        });
+                        document.querySelector(".btn-get").removeEventListener('click',geoRelocate);
+                        document.querySelector(".btn-get").addEventListener('click', baiduRelocate);
                     });
                 }
                 else{
@@ -82,9 +82,6 @@ var map = null;
                     convertor.translate(pointArr, 1, 5, function (data) {
                         currentPoint.latAndLong = (data.points[0].lng + ',' + data.points[0].lat).split(',')
                         callBack();
-                        document.querySelector(".btn-get").addEventListener('click', function() {
-                            getLocation_useBaiDuApi(reLocate);
-                        });
                     });
 
                 }
@@ -114,7 +111,7 @@ var map = null;
                         icon : myIcon
                     });
                     map.addOverlay(marker)
-                })
+                });
                 getViewRange(getBikeLocation)
             }
             function reLocate(){
@@ -128,7 +125,7 @@ var map = null;
                 map.centerAndZoom(point,15);
                 map.panTo(point);
                 getViewRange(getBikeLocation);
-                console.log('test')
+                console.log('call reLocate end')
             }
             function getViewRange(callBack){
                 var range = map.getBounds();//获取地图的可视区域
@@ -166,28 +163,35 @@ var map = null;
                         }
                     },
                     error : function () {
-                        console.log('error')
+                        console.log('getBikeLocation error')
                     }
                 })
+
+            }
+            function geoRelocate(){
+                console.log('google reLocate');
+                getLocation_useGeo(reLocate);
+            }
+            function baiduRelocate(){
+                console.log('baidu reLocate');
+                getLocation_useBaiDuApi(reLocate);
 
             }
          $(document).ready(function(){
 
 
          console.log("create");
-         getLocation_useGeo(mapCreate);
-         document.querySelector(".btn-get").addEventListener('click', function() {
 
-                           console.log('reLocate');
-                           getLocation_useGeo(reLocate);
-          });
+
+         getLocation_useGeo(mapCreate);
+         document.querySelector(".btn-get").addEventListener('click', geoRelocate);
 
          //滑动屏幕时动态请求车辆的位置
          document.getElementById('showmap').addEventListener('touchmove',function(e){
             console.log('touching');
-            getLocation_useGeo(mapCreate);
+            getViewRange(getBikeLocation);
            
          })
 
-         })
+         });
 
