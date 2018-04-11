@@ -58,7 +58,6 @@ def main(request):
 
 def getBikeLatLng(request):
     if request.method == 'POST':
-        print(request.POST)
         lon_left = request.POST.get("lon_left")
         lon_right = request.POST.get("lon_right")
         lat_left = request.POST.get("lat_left")
@@ -67,9 +66,8 @@ def getBikeLatLng(request):
         data = bikeLocation.objects.filter(bikeLongitude__gt=lon_left).filter(bikeLongitude__lt=lon_right).filter(
             bikeLatitude__gt=lat_left).filter(bikeLatitude__lt=lat_right).values("bikeLongitude", "bikeLatitude")
 
-        print(data)
         d = [i for i in data]
-        print(d)
+
         locationJson = json.dumps(d)
         if data:
             return HttpResponse(locationJson)
