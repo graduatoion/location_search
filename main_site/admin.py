@@ -12,7 +12,7 @@ class userInfoAdmin(admin.ModelAdmin):
 # Register your models here.
 @admin.register(bikeData)
 class bikeDataAdmin(admin.ModelAdmin):
-    list_display = ('bikeIp',)
+    list_display = ('id', 'bikeIp',)
 
 
 @admin.register(bikeLocation)

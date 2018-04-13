@@ -153,7 +153,7 @@ var map = null;
                         var bikeList = jQuery.parseJSON(data);
                         for(var i=0;i<bikeList.length;i++){
                             console.log(bikeList[i]);
-                            var myIcon = new BMap.Icon("/static/img/bike.png", new BMap.Size(50, 50)); //更换图标
+                            var myIcon = new BMap.Icon("/static/img/map_bike.png", new BMap.Size(50, 50)); //更换图标
                             var point = new BMap.Point(bikeList[i].bikeLongitude,bikeList[i].bikeLatitude);
 
                             var marker = new BMap.Marker(point,{
