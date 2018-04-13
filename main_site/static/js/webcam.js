@@ -1,6 +1,6 @@
-var n = null
-var v = null
-var gCtx = null
+var n = null;
+var v = null;
+var gCtx = null;
 
 function captureToCanvas(){
 
@@ -15,12 +15,12 @@ function captureToCanvas(){
                 console.log(e);//未扫描出二维码，输出错误信息
                 setTimeout(captureToCanvas, 500);//500ms之后再重绘canvas
                 document.getElementById('loading').style.display = "block";
-            };
+            }
         }
         catch(e){       
                 console.log(e);//若失败，输出错误信息
                 setTimeout(captureToCanvas, 500);//500ms再重绘canvas
-        };
+        }
 }
 //初始化canvas元素，形成一个矩形框
 function initCanvas(w,h){
