@@ -114,7 +114,7 @@ def scanQr(request):
 def openBike(request):
     if request.method == 'POST':
         bike_id = request.POST.get('bike_id')
-        
+
         try:
             data = bikeData.objects.get(id=bike_id)
 
@@ -130,4 +130,4 @@ def openBike(request):
         else:
             return HttpResponse('no')
     else:
-        return render_to_response('index.html')
+        return render_to_response('openBike.html')
