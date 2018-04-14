@@ -130,4 +130,4 @@ def openBike(request):
         else:
             return HttpResponse('no')
     else:
-        return render_to_response('index.html')
+        return render_to_response('openBike.html')
