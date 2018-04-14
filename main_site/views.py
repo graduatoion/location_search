@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, HttpResponse
-from main_site.models import bikeLocation, userInfomation
+from main_site.models import bikeLocation, userInfomation, bikeData
 import json
 import re
 from main_site import common
@@ -109,3 +109,19 @@ def logOut(request):
 def scanQr(request):
     if request.method == 'GET':
         return render_to_response('video/video.html')
+
+
+def openBike(request):
+    if request.method == 'POST':
+        bike_id = request.POST.get('bike_id')
+
+        data = bikeData.objects.get(id=bike_id)
+
+        if data:
+            request.session['bike_id'] = bike_id
+            request.session['bike_ip'] = str(data)
+            return HttpResponse('yes')
+        else:
+            return HttpResponse('no')
+    else:
+        return render_to_response('index.html')

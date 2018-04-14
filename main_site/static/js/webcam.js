@@ -8,7 +8,7 @@ function captureToCanvas(){
             gCtx.drawImage(v,0,0);//在canvas元素中绘出video的某一帧
             try{
 				qrcode.decode();//扫描二维码
-                console.log(qrcode.decode());//扫描成功输出二维码的信息
+                //console.log(qrcode.decode());//扫描成功输出二维码的信息
                 document.getElementById('loading').style.display = "none";//隐藏掉加载动画
             }
             catch(e){       
@@ -87,15 +87,25 @@ function load(){
 }
 function read(a){
 	document.getElementById("result").innerHTML = a.toString();
-	/*$.ajax({
+	$.ajax({
 		type:'post',
-		url:'';
-		data:a;
+		url:'/main/openBike/',
+		data:{
+			"bike_id":a
+		},
 		success:function(data){
-			if(data=='ok'){
-
+			if(data==='no') {
+                console.log('bike id not exist')
+            }
+            else if(data ==='yes'){
+				console.log('return yes');
+				window.location.href="/main/openBike/";
 			}
-		}
-	})*/
-	console.log(a);//输出扫描后的信息
+		},
+		error:function (e) {
+			console.log(e);
+
+        }
+	});
+	console.log("qrcode info:"+a);//输出扫描后的信息
 }
