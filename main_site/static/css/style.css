@@ -1,8 +1,8 @@
 /*
 * @Author: Administrator
 * @Date:   2018-03-12 15:13:08
-* @Last Modified by:   Administrator
-* @Last Modified time: 2018-04-14 11:09:19
+* @Last Modified by:   sivartTravis
+* @Last Modified time: 2018-04-14 14:29:11
 */
 /*去除默认样式*/
             * {
@@ -29,6 +29,7 @@
                 width: 100%;
                 /*height: 400px;*/
                 height:90%;
+                position: relative;
             }
             /*功能区按钮样式*/
             .btn-box {
@@ -275,3 +276,21 @@
                 height:100%;
                 width:100%;
             }
+        /*开锁信息提示区域*/
+        #lock-infor{
+            width: 100%;
+            height: 4rem;
+            background:#ccc;
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .loading-animate{
+            line-height: 4rem;
+            text-align: center;
+        }
+        .loading-animate span{
+            font-size: 1.5rem;
+
+        }
