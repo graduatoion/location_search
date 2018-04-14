@@ -1,0 +1,277 @@
+/*
+* @Author: Administrator
+* @Date:   2018-03-12 15:13:08
+* @Last Modified by:   Administrator
+* @Last Modified time: 2018-04-14 11:09:19
+*/
+/*去除默认样式*/
+            * {
+                margin: 0;
+                padding: 0;
+                font-size: 16px;
+                font-family:"Microsoft Yahei";
+            }
+            a {
+                text-decoration:none;
+                outline: none;
+                color: #fff;
+            }
+            ul,li{
+                list-style: none;
+            }
+            html{
+                height:100%;
+            }
+            body{
+                height:100%;
+            }
+            .map {
+                width: 100%;
+                /*height: 400px;*/
+                height:90%;
+            }
+            /*功能区按钮样式*/
+            .btn-box {
+                position:fixed;
+                bottom:1rem;
+                left:0;
+                width: 100%;
+                display: flex;
+                display: -webkit-flex;
+                justify-content: space-around;
+                justify-content: -webkit-space-around;
+                align-items: center;
+                align-items: -webkit-center;
+            }
+
+            .btn {
+                border-radius:50%;
+                text-align: center; 
+                opacity:0.7; 
+                cursor:pointer;
+            }
+            .btn-aside{
+                width:3rem;
+                height:3rem;
+                line-height:3rem;
+                font-size:0.8rem;
+                color:#322F42;
+                border:2px solid #322F42;
+                
+            }
+            .btn-get{
+                background-image: url(/static/img/ding.png);
+            }
+            .btn-show{
+                background-image:url(/static/img/mark.png);
+
+            }
+            .btn-code{
+                width:7rem;
+                height:7rem;
+                line-height:11rem;
+                color:#322F42;
+                font-weight:bold;
+                background-color:#d81e06;
+                position: relative;
+            }
+            .code{
+                position: absolute;
+                top: 1.5rem;
+                left: 2rem;
+                width: 3rem;
+                height: 3rem;
+                display: block;
+
+                background:url(/static/img/scan.png);
+            }
+            #mark{
+                position:absolute;
+                width:3.5rem;
+                height:3.5rem;
+                background-image:url(/static/img/center2.png);
+                opacity:0.8;
+            }
+
+            /*头部样式*/
+            .up-side{
+                height:10%;
+                background:#322F42;
+                position: relative;
+            }
+            .user{
+                width: 2rem;
+                height: 2rem;
+                display: inline-block;
+                margin: 1rem;
+                background-image:url(/static/img/username.png);
+            }
+            #back{
+                position: absolute;
+                top: 1rem;
+                right: 2rem;
+                width: 2rem;
+                height: 2rem;
+                background-image: url(/static/img/back.png);
+            }
+            /*侧栏样式*/
+            .user-centered{
+                position: fixed;
+                left: 0;
+                top: 0;
+                background-color:#322F42;
+                width: 80%;
+                height: 100%;
+                z-index: 999;
+                display: none;
+
+            }
+            .header-infor{
+                display: flex;
+                width: 100%;
+                height: 6rem;
+                background-color: #FF0033;
+                align-items:center;
+                align-items: -webkit-center;
+            }
+            .head-portrait{
+                flex:1;
+                height: 4rem;
+                
+            }
+            #logo{
+                display: block;
+                width: 4rem;
+                height: 4rem;
+                background:url(/static/img/head.png) no-repeat;
+                border-radius: 50%;
+                margin-left: 2rem;
+            }
+            .nickname{
+                flex:2;
+                height: 6rem;
+                line-height: 6rem;
+                color: #fff;
+            }
+            .head-func{
+                padding:1rem;
+            }
+            .head-func li{
+                height: 5rem;
+                line-height: 5rem;
+                color: #fff;
+
+            }
+            .head-func li i{
+                display: inline-block;
+                width: 2rem;
+                height: 2rem;
+                margin-right: 1rem;
+            }
+            .icon-trip{
+                background-image: url(/static/img/history.png);
+            }
+            .icon-visit{
+                background-image: url(/static/img/visit.png);
+            }
+            .icon-exit{
+                background-image: url(/static/img/exit.png);
+
+            }
+
+            /*登录和注册部分样式*/
+            input,button{
+                outline: none;
+                border: 0;
+                border-radius:2rem;
+            }
+            input{
+                width: 75%;
+                height: 3rem;
+                text-indent: 1em;
+            }
+            button{
+                width: 40%;
+                height: 3rem;
+                background-color: #d81e06;
+                margin:0 auto;
+                display: block;
+                color:#fff;
+                text-align: center;
+            }
+            .cancel{
+                width: 2rem;
+                height: 2rem;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                background-image: url(/static/img/cancel.png);
+            }
+            #shade-login{
+                display: none;
+                width: 100%;
+                height: 100%;
+                background-color: #322F42;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+            #shade-register{
+                display: none;
+                width: 100%;
+                height: 100%;
+                background-color: #322F42;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+            .register-form{
+                padding-top: 5rem;
+
+            }
+    
+            .register-form>div:not(.logo-reg){
+                margin: 1.5rem 0;
+                margin-left: 2rem;
+                vertical-align: middle;
+            }
+            .tip{
+                color: #d81e06;
+                padding-left: 3rem;
+                padding-top: 0.5rem;
+                display: none;
+            }
+            .tips{
+                text-align: center;
+                margin:0 auto;
+                padding:0;
+            }
+            .register-form .logo-reg{
+                width:7.5rem;
+                height:7.5rem;
+                margin:0 auto;
+                background-image:url(/static/img/bike.png);
+            }
+            .icon{
+                width: 2rem;
+                height: 2rem;
+                display: inline-block;
+                margin-right:0.3rem;
+            }
+            .phoneid{
+                background:url(/static/img/username.png) no-repeat;
+            }
+            .password{
+                background:url(/static/img/password.png) no-repeat;
+            }
+            .hint{
+                text-align: right;
+                height: 2.5rem;
+                padding-right: 1rem;
+                color: #fff;
+        
+            }
+            #host-interface{
+                height:100%;
+                width:100%;
+            }

@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, HttpResponse
-from main_site.models import bikeLocation, userInfomation
+from main_site.models import bikeLocation, userInfomation, bikeData
 import json
 import re
 from main_site import common
@@ -58,7 +58,6 @@ def main(request):
 
 def getBikeLatLng(request):
     if request.method == 'POST':
-        print(request.POST)
         lon_left = request.POST.get("lon_left")
         lon_right = request.POST.get("lon_right")
         lat_left = request.POST.get("lat_left")
@@ -67,9 +66,8 @@ def getBikeLatLng(request):
         data = bikeLocation.objects.filter(bikeLongitude__gt=lon_left).filter(bikeLongitude__lt=lon_right).filter(
             bikeLatitude__gt=lat_left).filter(bikeLatitude__lt=lat_right).values("bikeLongitude", "bikeLatitude")
 
-        print(data)
         d = [i for i in data]
-        print(d)
+
         locationJson = json.dumps(d)
         if data:
             return HttpResponse(locationJson)
@@ -111,3 +109,25 @@ def logOut(request):
 def scanQr(request):
     if request.method == 'GET':
         return render_to_response('video/video.html')
+
+
+def openBike(request):
+    if request.method == 'POST':
+        bike_id = request.POST.get('bike_id')
+        
+        try:
+            data = bikeData.objects.get(id=bike_id)
+
+        except BaseException as e:
+
+            print (e)
+            data = False
+
+        if data:
+            request.session['bike_id'] = bike_id
+            request.session['bike_ip'] = str(data)
+            return HttpResponse('yes')
+        else:
+            return HttpResponse('no')
+    else:
+        return render_to_response('index.html')

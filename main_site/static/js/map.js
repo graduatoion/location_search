@@ -58,11 +58,11 @@ var map = null;
                         callBack();
 
                     });
-                    },function () {
+                    },function (e) {
+                        console.log(e);
                         getLocation_useBaiDuApi(mapCreate);
-                        document.querySelector(".btn-get").addEventListener('click', function() {
-                            getLocation_useBaiDuApi(reLocate);
-                        });
+                        document.querySelector(".btn-get").removeEventListener('click',geoRelocate);
+                        document.querySelector(".btn-get").addEventListener('click', baiduRelocate);
                     });
                 }
                 else{
@@ -82,9 +82,6 @@ var map = null;
                     convertor.translate(pointArr, 1, 5, function (data) {
                         currentPoint.latAndLong = (data.points[0].lng + ',' + data.points[0].lat).split(',')
                         callBack();
-                        document.querySelector(".btn-get").addEventListener('click', function() {
-                            getLocation_useBaiDuApi(reLocate);
-                        });
                     });
 
                 }
@@ -102,25 +99,25 @@ var map = null;
                 var point = new BMap.Point(currentPoint.latAndLong[0], currentPoint.latAndLong[1]);
                 map.centerAndZoom(point ,14);
                 map.enableScrollWheelZoom(true);
-                var myIcon = new BMap.Icon("http://123.207.31.244:8080/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标
+                var myIcon = new BMap.Icon("/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标
                 var marker = new BMap.Marker(point, {
                     icon: myIcon
                 }); // 创建标注
                 map.addOverlay(marker); // 将标注添加到地图中(此标注即为当前位置)
                 getViewRange(function () {
                     var point = new BMap.Point(117.950,41.000);
-                    var myIcon = new BMap.Icon("http://123.207.31.244:8080/static/peoicon.png", new BMap.Size(30, 30)); //更换图标
+                    var myIcon = new BMap.Icon("/static/peoicon.png", new BMap.Size(30, 30)); //更换图标
                     var marker = new BMap.Marker(point,{
                         icon : myIcon
                     });
                     map.addOverlay(marker)
-                })
+                });
                 getViewRange(getBikeLocation)
             }
             function reLocate(){
                 map.clearOverlays();
                 var point = new BMap.Point(currentPoint.latAndLong[0], currentPoint.latAndLong[1]);
-                var myIcon = new BMap.Icon("http://123.207.31.244:8080/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标#}
+                var myIcon = new BMap.Icon("/static/img/peoicon.png", new BMap.Size(30, 30)); //更换图标#}
                 var marker = new BMap.Marker(point, {
                     icon: myIcon
                 }); // 创建标注
@@ -128,7 +125,7 @@ var map = null;
                 map.centerAndZoom(point,15);
                 map.panTo(point);
                 getViewRange(getBikeLocation);
-                console.log('test')
+                console.log('call reLocate end')
             }
             function getViewRange(callBack){
                 var range = map.getBounds();//获取地图的可视区域
@@ -153,11 +150,10 @@ var map = null;
                         "lat_right":viewRange.lat_right
                     },
                     success : function (data) {
-                        console.log('success');
                         var bikeList = jQuery.parseJSON(data);
                         for(var i=0;i<bikeList.length;i++){
                             console.log(bikeList[i]);
-                            var myIcon = new BMap.Icon("http://123.207.31.244:8080/bike.png", new BMap.Size(50, 50)); //更换图标
+                            var myIcon = new BMap.Icon("/static/img/map_bike.png", new BMap.Size(50, 50)); //更换图标
                             var point = new BMap.Point(bikeList[i].bikeLongitude,bikeList[i].bikeLatitude);
 
                             var marker = new BMap.Marker(point,{
@@ -167,27 +163,35 @@ var map = null;
                         }
                     },
                     error : function () {
-                        console.log('error')
+                        console.log('getBikeLocation error')
                     }
                 })
+
+            }
+            function geoRelocate(){
+                console.log('google reLocate');
+                getLocation_useGeo(reLocate);
+            }
+            function baiduRelocate(){
+                console.log('baidu reLocate');
+                getLocation_useBaiDuApi(reLocate);
 
             }
          $(document).ready(function(){
 
 
          console.log("create");
+
+
          getLocation_useGeo(mapCreate);
-         document.querySelector(".btn-get").addEventListener('click', function() {
-                           console.log('reLocate');
-                           getLocation_useGeo(reLocate);
-          });
+         document.querySelector(".btn-get").addEventListener('click', geoRelocate);
 
          //滑动屏幕时动态请求车辆的位置
          document.getElementById('showmap').addEventListener('touchmove',function(e){
             console.log('touching');
-            getLocation_useGeo(mapCreate);
+            getViewRange(getBikeLocation);
            
          })
 
-         })
+         });
 
