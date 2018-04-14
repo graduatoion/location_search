@@ -114,8 +114,14 @@ def scanQr(request):
 def openBike(request):
     if request.method == 'POST':
         bike_id = request.POST.get('bike_id')
+        
+        try:
+            data = bikeData.objects.get(id=bike_id)
 
-        data = bikeData.objects.get(id=bike_id)
+        except BaseException as e:
+
+            print e
+            data = False
 
         if data:
             request.session['bike_id'] = bike_id
