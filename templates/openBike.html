@@ -8,7 +8,7 @@
         <meta content="telephone=no" name="format-detection">
         <meta content="email=no" name="format-detection">
         <title>骑行...</title>
-        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="/static/css/style.css">
     	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ayNGk6jqeEfH7sDIztpvlaLk2iPuI7jg"></script>
         <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
     </head>
@@ -20,8 +20,19 @@
                 <!-- 预留功能 -->
                 <i id="back"></i>
             </header>
+            
             <!-- 地图展示区域 -->
-            <div id="showmap" class="map"></div>
+            <div id="showmap" class="map">
+                <!--开锁提示区域 -->
+                <div id="lock-infor">
+                    <div class="loading-animate">
+                        <img src="/static/img/loading4.gif" alt="" class="loading-image">
+                        <span id="loading-infor">开锁中...(●_●)
+</span>
+                    </div>
+                </div>
+
+            </div>
             <!-- 主界面功能按钮 -->
             <div class="btn-box">
                 <div class="btn btn-get btn-aside"></div>
@@ -96,6 +107,7 @@
     <!--<script src="http://console.hongliang.org/js/console.min.js?nRNL1ney"></script>-->
     <script type="text/javascript" src="/static/js/index.js"></script>
     <script type="text/javascript" src="/static/js/map.js"></script>
+    <script type="text/javascript" src="/static/js/openBike.js"></script>
 
     </body>
 </html>
