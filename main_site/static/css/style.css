@@ -1,8 +1,8 @@
 /*
 * @Author: Administrator
 * @Date:   2018-03-12 15:13:08
-* @Last Modified by:   Administrator
-* @Last Modified time: 2018-03-12 15:15:31
+* @Last Modified by:   sivartTravis
+* @Last Modified time: 2018-04-14 14:29:11
 */
 /*去除默认样式*/
             * {
@@ -29,6 +29,7 @@
                 width: 100%;
                 /*height: 400px;*/
                 height:90%;
+                position: relative;
             }
             /*功能区按钮样式*/
             .btn-box {
@@ -89,7 +90,7 @@
                 position:absolute;
                 width:3.5rem;
                 height:3.5rem;
-                background-image:url(/static/img/center.png);
+                background-image:url(/static/img/center2.png);
                 opacity:0.8;
             }
 
@@ -159,6 +160,7 @@
             .head-func li{
                 height: 5rem;
                 line-height: 5rem;
+                color: #fff;
 
             }
             .head-func li i{
@@ -175,6 +177,7 @@
             }
             .icon-exit{
                 background-image: url(/static/img/exit.png);
+
             }
 
             /*登录和注册部分样式*/
@@ -273,3 +276,21 @@
                 height:100%;
                 width:100%;
             }
+        /*开锁信息提示区域*/
+        #lock-infor{
+            width: 100%;
+            height: 4rem;
+            background:#ccc;
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .loading-animate{
+            line-height: 4rem;
+            text-align: center;
+        }
+        .loading-animate span{
+            font-size: 1.5rem;
+
+        }

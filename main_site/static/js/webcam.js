@@ -95,6 +95,7 @@ function read(a){
 		},
 		success:function(data){
 			if(data==='no') {
+				document.getElementById("result").innerHTML = '(该编号不存在)';
                 console.log('bike id not exist')
             }
             else if(data ==='yes'){

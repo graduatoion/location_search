@@ -120,7 +120,7 @@ def openBike(request):
 
         except BaseException as e:
 
-            print e
+            print (e)
             data = False
 
         if data:

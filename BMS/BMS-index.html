@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理系统</title>
+	<link rel="stylesheet" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+	<link rel="stylesheet" href="BMS-style.css">
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ayNGk6jqeEfH7sDIztpvlaLk2iPuI7jg"></script>
+</head>
+<body>
+	<header>
+		<h1>后台管理系统</h1>
+		<p class="header-tip">欢迎<span id="username"> username </span>登入该系统(◦˙▽˙◦)</p>
+	</header>
+	<div class="content">
+		<div class="position-item">
+			<div class="search">
+    			<div class="input-group">
+      				<input type="text" class="form-control" placeholder="请输入您所要查询的地点" id="search-keywords">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default" type="button" id="search-click">搜索</button>
+      				</span>
+   			 	</div>
+  			</div>
+  			<div class="menu">
+  				<h3>数据管理</h3>
+  				<button type="button" class="btn btn-info btn-location" id="addBike">添加车辆</button>
+  			</div>
+		</div>
+		
+  		<div id="allmap">
+  			
+  		</div>
+	</div>
+
+	<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+	<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+	<script src="BMS-index.js"></script>
+</body>
+</html>
