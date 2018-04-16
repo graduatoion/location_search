@@ -177,22 +177,22 @@ var map = null;
                 getLocation_useBaiDuApi(reLocate);
 
             }
-         $(document).ready(function(){
+         $(document).ready(function() {
 
 
-         console.log("create");
+             console.log("create");
 
 
-         getLocation_useGeo(mapCreate);
-         document.querySelector(".btn-get").addEventListener('click', geoRelocate);
+             getLocation_useGeo(mapCreate);
+             document.querySelector(".btn-get").addEventListener('click', geoRelocate);
 
-         //滑动屏幕时动态请求车辆的位置
-         document.getElementById('showmap').addEventListener('touchmove',function(e){
-            console.log('touching');
-            getViewRange(getBikeLocation);
-           
-         })
+             //滑动屏幕时动态请求车辆的位置
+             document.getElementById('showmap').addEventListener('touchmove', function (e) {
+                 console.log('touching');
+                 getViewRange(getBikeLocation);
 
+             })
+         });
 
          
 
