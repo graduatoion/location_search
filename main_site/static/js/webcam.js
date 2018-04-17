@@ -68,9 +68,9 @@ else{
 
 function setwebcam2(options){
 	 
-		  var p = n.mediaDevices.getUserMedia({video: options, audio: false})
-		  p.then(success, error)
-		  setTimeout(captureToCanvas, 500);
+		  var p = n.mediaDevices.getUserMedia({video: options, audio: false});
+		  p.then(success, error);
+		//  setTimeout(captureToCanvas, 500);
 	
 }
 function success(stream){
@@ -87,7 +87,8 @@ function load(){
 }
 function read(a){
 	document.getElementById("result").innerHTML = a.toString();
-	$.ajax({
+	var istransfer  = true;
+	var p = $.ajax({
 		type:'post',
 		url:'/main/openBike/',
 		data:{
@@ -95,18 +96,28 @@ function read(a){
 		},
 		success:function(data){
 			if(data==='no') {
+			    istransfer = false;
 				document.getElementById("result").innerHTML = '(该编号不存在)';
                 console.log('bike id not exist')
             }
             else if(data ==='yes'){
+
 				console.log('return yes');
-				window.location.href="/main/openBike/";
+
 			}
 		},
 		error:function (e) {
+		    istransfer = false;
 			console.log(e);
 
         }
 	});
+
+	p.then(function () {
+	    if(istransfer){
+	        window.location.href="/main/guidePage/";
+        }
+	    }
+	);
 	console.log("qrcode info:"+a);//输出扫描后的信息
 }
