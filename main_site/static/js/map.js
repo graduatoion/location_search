@@ -1,4 +1,5 @@
 var map = null;
+var is_openBike = false;
     
     var currentPoint = {
                 latAndLong: [116.404, 39.915],
@@ -112,6 +113,9 @@ var map = null;
                     });
                     map.addOverlay(marker)
                 });
+                if(is_openBike){
+                    zoomSelectBike();
+                }
                 getViewRange(getBikeLocation)
             }
             function reLocate(){
@@ -183,7 +187,7 @@ var map = null;
              console.log("create");
 
 
-             getLocation_useGeo(mapCreate);
+             mapPageProcess = getLocation_useGeo(mapCreate);
              document.querySelector(".btn-get").addEventListener('click', geoRelocate);
 
              //滑动屏幕时动态请求车辆的位置
