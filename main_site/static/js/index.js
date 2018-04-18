@@ -44,7 +44,7 @@
                     
                 }
             })
-        })
+        });
         //判断输入框的值是否为空字符串，若是，给出提示。
         $('#phoneId').blur(function(){
             var $phoneId = $('#phoneId').val();
@@ -56,7 +56,7 @@
                 },2000);
             }
             
-        })
+        });
         $('#password').blur(function(){
             var $password = $('#password').val();
             if($password===''){
@@ -65,7 +65,7 @@
                     $('#tip-password').hide();
                 },2000);
             }
-        })
+        });
 
 
         //注册部分javascript代码
@@ -80,10 +80,10 @@
                 setTimeout(function(){
                         $('#tip-phone-reg').hide();
                 },2000);
-            };
+            }
 
 
-        })
+        });
         //验证密码是否由8位数字和字母组成，若不是，给出提示信息
         $('#password-register').on('blur',function(){
             var $password = $(this).val();
@@ -95,10 +95,10 @@
                 setTimeout(function(){
                         $('#tip-password-reg').hide();
                 },2000);
-            };
+            }
 
 
-        })
+        });
         //验证确认密码是否和之前密码一致，若不一致，给出提示信息
         $('#sure-password').on('blur',function(){
             var $password = $('#password-register').val();
@@ -110,7 +110,7 @@
                         $('#tip-password-sure').hide();
                 },2000);
             }
-        })
+        });
         //将注册信息提交给后台
         $('#register-submit').on('click',function(){
             var $phoneId = $('#phoneid-register').val();
@@ -142,15 +142,15 @@
                 }
             })
 
-        })
+        });
 
 		//注册和登录模块的回退功能
         $('#cancel-register').on('click',function(){
                 $('#shade-register').hide();
-        })
+        });
         $('#cancel-login').on('click',function(){
                 $('#shade-login').hide();
-        })
+        });
 
         var isLogin = false;
     //判断登陆状态
@@ -180,7 +180,7 @@
                 $('host-interface').hide();
                 $('#shade-login').show();
             }
-        })
+        });
         //退出登录
         $('#log-off').click(function(){
             $.ajax({
@@ -193,4 +193,4 @@
             })
         })
 
-    })  
+    });

@@ -7,7 +7,7 @@ from django.db import models
 class bikeData(models.Model):
     bikeIp = models.CharField(max_length=50)
     bikeStatus = models.BooleanField(default=0)
-    bikePort = models.CharField(max_length=10, default=10000)
+    bikePort = models.CharField(max_length=10, default=18000)
 
     def __str__(self):
         return str(self.bikeIp)

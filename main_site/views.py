@@ -114,20 +114,66 @@ def scanQr(request):
 def openBike(request):
     if request.method == 'POST':
         bike_id = request.POST.get('bike_id')
-
+        bike_ip = ''
+        bike_port = ''
         try:
-            data = bikeData.objects.get(id=bike_id)
+            data = bikeData.objects.filter(id=bike_id)
 
+            for i in data.values_list('bikeIp', 'bikePort'):
+                bike_ip, bike_port = i
+
+            print(bike_ip, bike_port)
         except BaseException as e:
 
-            print (e)
+            print ("bike data query error : {}".format(e))
             data = False
+        else:
+            pass
 
         if data:
+            common.BikeInfo.openBike(port=bike_port)
             request.session['bike_id'] = bike_id
-            request.session['bike_ip'] = str(data)
+            request.session['bike_ip'] = bike_ip
+            request.session['bike_port'] = bike_port
             return HttpResponse('yes')
         else:
             return HttpResponse('no')
-    else:
+
+
+def closeBike(request):
+    if request.method == 'GET':
+        try:
+            common.BikeInfo.closeBike(port=request.session['bike_port'])
+        except Exception as e:
+            print("close bike error : {}".format(e))
+            return HttpResponse("no")
+        else:
+            del request.session['bike_id']
+            del request.session['bike_ip']
+            del request.session['bike_port']
+            return HttpResponse("yes")
+
+
+def guidePage(request):
+    if request.method == 'GET':
         return render_to_response('openBike.html')
+
+
+def checkBikeStatus(request):
+    if request.method == 'GET':
+        if common.BikeInfo.isLock():
+            return HttpResponse("lock")
+        else:
+            return HttpResponse("unlock")
+
+
+def getBikeLocationByid(request):
+    if request.method == 'GET':
+        bike_id = request.session['bike_id']
+        data = bikeLocation.objects.filter(bikeId=bike_id)
+        for i in data.values_list('bikeLatitude', 'bikeLongitude'):
+            lat, lon = i
+        return_list = [lat, lon]
+
+        # print("data values : {}".format(data.values()))
+        return HttpResponse(json.dumps(return_list))

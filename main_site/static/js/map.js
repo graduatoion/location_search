@@ -1,4 +1,5 @@
 var map = null;
+var is_openBike = false;
     
     var currentPoint = {
                 latAndLong: [116.404, 39.915],
@@ -112,6 +113,9 @@ var map = null;
                     });
                     map.addOverlay(marker)
                 });
+                if(is_openBike){
+                    zoomSelectBike();
+                }
                 getViewRange(getBikeLocation)
             }
             function reLocate(){
@@ -177,21 +181,34 @@ var map = null;
                 getLocation_useBaiDuApi(reLocate);
 
             }
-         $(document).ready(function(){
+         $(document).ready(function() {
 
+<<<<<<< HEAD
          console.log("create");
 
          getLocation_useGeo(mapCreate);
          document.querySelector(".btn-get").addEventListener('click', geoRelocate);
+=======
 
-         //滑动屏幕时动态请求车辆的位置
-         document.getElementById('showmap').addEventListener('touchmove',function(e){
-            console.log('touching');
-            getViewRange(getBikeLocation);
-           
-         })
+             console.log("create");
 
+
+             mapPageProcess = getLocation_useGeo(mapCreate);
+             document.querySelector(".btn-get").addEventListener('click', geoRelocate);
+>>>>>>> 7e54d927e13898f580776f789bc3098a7774f439
+
+             //滑动屏幕时动态请求车辆的位置
+             document.getElementById('showmap').addEventListener('touchmove', function (e) {
+                 console.log('touching');
+                 getViewRange(getBikeLocation);
+
+<<<<<<< HEAD
 })
+=======
+             })
+         });
+
+>>>>>>> 7e54d927e13898f580776f789bc3098a7774f439
          
 
          
