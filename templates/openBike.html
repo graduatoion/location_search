@@ -7,7 +7,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style">
         <meta content="telephone=no" name="format-detection">
         <meta content="email=no" name="format-detection">
-        <title>骑行...</title>
+        <title>骑行中...</title>
         <link rel="stylesheet" href="/static/css/style.css">
     	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ayNGk6jqeEfH7sDIztpvlaLk2iPuI7jg"></script>
         <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
@@ -20,23 +20,22 @@
                 <!-- 预留功能 -->
                 <i id="back"></i>
             </header>
-            
+             <!--开锁提示区域 -->
+            <div id="lock-infor">
+                <div class="loading-animate">
+                    <img src="/static/img/loading4.gif" alt="" class="loading-image">
+                    <span id="loading-infor">开锁中...(●_●)</span>
+                </div>
+            </div>
             <!-- 地图展示区域 -->
             <div id="showmap" class="map">
-                <!--开锁提示区域 -->
-                <div id="lock-infor">
-                    <div class="loading-animate">
-                        <img src="/static/img/loading4.gif" alt="" class="loading-image">
-                        <span id="loading-infor">开锁中...(●_●)
-</span>
-                    </div>
-                </div>
+               
 
             </div>
             <!-- 主界面功能按钮 -->
             <div class="btn-box">
                 <div class="btn btn-get btn-aside"></div>
-                <div class="btn btn-code" id="scan-code"><i class="code"></i>扫码用车</div>
+                <div class="btn btn-code" id="finish-trip"><i class="finish"></i>结束行程</div>
                 <div class="btn btn-show btn-aside"></div>
             </div>
             <!-- 中央位置标注 -->

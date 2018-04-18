@@ -179,9 +179,7 @@ var map = null;
             }
          $(document).ready(function(){
 
-
          console.log("create");
-
 
          getLocation_useGeo(mapCreate);
          document.querySelector(".btn-get").addEventListener('click', geoRelocate);
@@ -193,7 +191,7 @@ var map = null;
            
          })
 
-
+})
          
 
          
