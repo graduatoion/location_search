@@ -1,0 +1,63 @@
+/*
+* @Author: Administrator
+* @Date:   2018-04-19 14:37:59
+* @Last Modified by:   Administrator
+* @Last Modified time: 2018-04-19 15:45:45
+*/
+/*去除默认样式*/
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family:"Microsoft Yahei";
+  }
+a {
+    text-decoration:none;
+    outline: none;
+    color: #000;
+   }
+ul,li{
+    list-style: none;
+   }
+body{
+	background:#FAFAFA;
+}
+h2{
+	height: 5rem;
+	line-height: 5rem;
+	text-indent: 1em;
+	font-size: 2rem;
+	background:#322F42;
+	color: #fff;
+}
+#my-trip{
+	background:#FAFAFA;
+	padding: 3rem 1rem;
+}
+#my-trip li{
+	height: 4rem;
+	line-height: 4rem;
+	border-bottom: 2px dotted #ccc;
+	position: relative;
+
+}
+#current-time{
+	width: 6rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	background-color: #ccc;
+	opacity: 0.7;
+	border-radius: 1rem;
+	display: inline-block;
+	margin-left: 5rem;
+}
+i{
+	width: 2rem;
+	height: 2rem;
+	display: inline-block;
+	background:url(../image/detail1.png);
+	position: absolute;
+	top: 1.25rem;
+	right: 1rem;
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+	<title>行程详情</title>
+	<style>
+	* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family:"Microsoft Yahei";
+  	}
+  	body{
+  		height: 100%;
+  	}
+	h2{
+		height: 5rem;
+		line-height: 5rem;
+		text-indent: 1em;
+		font-size: 2rem;
+		background:#322F42;
+		color: #fff;
+	}
+	#map-detail{
+		height:25rem;
+	}
+	.detail-infor{
+		height: 10rem;
+		background:#F0F0F0;
+		border-radius: 2rem;
+		margin: 0.5rem;
+	}
+	.bike-id{
+		width: 15rem;
+		margin-left: 5rem;
+	}
+	.b-id span{
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+	.bike-other{
+		height: 3rem;
+		line-height: 3rem;
+	}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ayNGk6jqeEfH7sDIztpvlaLk2iPuI7jg"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
+</head>
+<body>
+	<h2>行程详情</h2>
+	<div id="map-detail">
+	</div>
+	<div class="detail-infor">
+		<div class="bike-id">
+			<img src="image/bike.png" height="64" width="64" alt="">
+			<div class="b-id">
+				<span>自行车ID:</span>
+				<span id="bike-id">08042</span>
+			</div>
+			<div class="bike-other">
+				<span id="start-time">18:24</span>
+				<span id="cycling-time">30分钟</span>
+				<span id="current-time">2018.1.30</span>
+			</div>
+		</div>
+	</div>
+	<script src="js/detail.js"></script>
+</body>
+</html>

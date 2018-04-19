@@ -1,8 +1,8 @@
 /*
 * @Author: Administrator
 * @Date:   2018-03-12 15:13:08
-* @Last Modified by:   sivartTravis
-* @Last Modified time: 2018-04-18 19:44:25
+* @Last Modified by:   Administrator
+* @Last Modified time: 2018-04-19 14:13:23
 */
 /*去除默认样式*/
             * {
@@ -96,13 +96,13 @@
                 display: block;
                 background:url(/static/img/over.png);
             }
-            #mark{
+            /* #mark{
                 position:absolute;
                 width:3.5rem;
                 height:3.5rem;
                 background-image:url(/static/img/center2.png);
                 opacity:0.8;
-            }
+            } */
 
             /*头部样式*/
             .up-side{

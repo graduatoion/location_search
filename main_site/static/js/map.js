@@ -12,12 +12,12 @@ var is_openBike = false;
                 lat_right:360
             };
             //在地图中心设置标注点
-            var pos_left = $(window).width()/2-28;
+            /*var pos_left = $(window).width()/2-28;
             var pos_top = ($(window).height()-64)/2-28;
             $('#mark').css({
                 top:pos_top,
                 left:pos_left
-            });
+            });*/
 
             //点击用户图标出现侧栏
             $('#user').click(function(){
