@@ -23,7 +23,7 @@ class bikeLocation(models.Model):
 
 
 class userInfomation(models.Model):
-    userId = models.CharField(max_length=128, null=False, primary_key=True)
+    userId = models.CharField(max_length=128, null=False)
     password = models.CharField(max_length=50, null=False)
     userSex = models.BooleanField(default=1)
     creditLevel = models.IntegerField(default=0)
@@ -37,18 +37,16 @@ class userTravel(models.Model):
     travelId = models.AutoField(primary_key=True, null=False)
     bikeId = models.ForeignKey(bikeData)
     openTime = models.TimeField(auto_now_add=True)
-    travelTimeRange = models.TimeField(null=True)
-    travelStart = models.CharField(max_length=128)
-    travelEnd = models.CharField(max_length=128)
+    endTime = models.TimeField(null=True)
     lockStatus = models.BooleanField(default=0)
 
     def __str__(self):
         return str(self.travelId)
 
 
-class travelDetial(models.Model):
+class travelDetail(models.Model):
     detailId = models.AutoField(primary_key=True, null=False)
     travelId = models.ForeignKey(userTravel)
-    timeStamp = models.TimeField(auto_now=True)
+    timeStamp = models.TimeField(auto_now_add=True)
     lon = models.FloatField()
     lat = models.FloatField()
