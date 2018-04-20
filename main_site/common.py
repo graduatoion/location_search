@@ -2,7 +2,6 @@ import re
 import requests
 from threading import Thread
 
-
 class common(object):
     def __init__(self):
         pass
@@ -33,14 +32,15 @@ class BikeInfo:
     @classmethod
     def isLock(cls, port=18000):
         res = None
+        returnStatus = True
         try:
             res = requests.get("http://127.0.0.1:{}/getBikeStatus".format(port))
+            if res.content == '1':
+                returnStatus = False
         except Exception as e:
             print("request bike error : {}".format(e))
-        if res.content == '0':
-            return True
-        else:
-            return False
+            returnStatus = True
+        return returnStatus
 
 
 
