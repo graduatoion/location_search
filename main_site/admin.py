@@ -1,6 +1,6 @@
 # -*- coding:UTF-8 -*-
 from django.contrib import admin
-from main_site.models import bikeData, bikeLocation, userInfomation
+from main_site.models import bikeData, bikeLocation, userInfomation, userTravel, travelDetail
 
 
 @admin.register(userInfomation)
@@ -32,5 +32,13 @@ class bikeLocationAdmin(admin.ModelAdmin):
     # actions_on_bottom = True 动作菜单放置的位置
     # actions_on_top = False
 
-# admin.site.register(bikeData, bikeDataAdmin)
-# admin.site.register(bikeLocation, bikeLocationAdmin)
+
+@admin.register(userTravel)
+class userTravelAdmin(admin.ModelAdmin):
+    list_display = ('userId', 'travelId', 'bikeId', 'openTime', 'endTime', 'lockStatus')
+    fields = ('userId', 'bikeId', 'lockStatus')
+
+
+@admin.register(travelDetail)
+class tarvelDetialAdmin(admin.ModelAdmin):
+    list_display = ('detailId', 'travelId', 'timeStamp', 'lon', 'lat')
