@@ -12,12 +12,12 @@ var is_openBike = false;
                 lat_right:360
             };
             //在地图中心设置标注点
-            var pos_left = $(window).width()/2-28;
+            /*var pos_left = $(window).width()/2-28;
             var pos_top = ($(window).height()-64)/2-28;
             $('#mark').css({
                 top:pos_top,
                 left:pos_left
-            });
+            });*/
 
             //点击用户图标出现侧栏
             $('#user').click(function(){
@@ -184,20 +184,31 @@ var is_openBike = false;
             }
          $(document).ready(function() {
 
+<<<<<<< HEAD
+         console.log("create");
+
+         getLocation_useGeo(mapCreate);
+         document.querySelector(".btn-get").addEventListener('click', geoRelocate);
+=======
 
 
 
              mapPageProcess = getLocation_useGeo(mapCreate);
              document.querySelector(".btn-get").addEventListener('click', geoRelocate);
+>>>>>>> 7e54d927e13898f580776f789bc3098a7774f439
 
              //滑动屏幕时动态请求车辆的位置
              document.getElementById('showmap').addEventListener('touchmove', function (e) {
                  console.log('touching');
                  getViewRange(getBikeLocation);
 
+<<<<<<< HEAD
+})
+=======
              })
          });
 
+>>>>>>> 7e54d927e13898f580776f789bc3098a7774f439
          
 
          
