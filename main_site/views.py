@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, HttpResponse
-from main_site.models import bikeLocation, userInfomation, bikeData
+from main_site.models import bikeLocation, userInfomation, bikeData, userTravel, travelDetail
 import json
 import re
 from main_site import common
@@ -135,6 +135,14 @@ def openBike(request):
             request.session['bike_id'] = bike_id
             request.session['bike_ip'] = bike_ip
             request.session['bike_port'] = bike_port
+            print("bikeId : {}".format(bike_id))
+            try:
+                foreUserId = userInfomation.objects.get(userId=request.session['phoneId'])
+                foreBikeId = bikeData.objects.get(id=request.session['bike_id'])
+                print("foreBikeId:{}".format(foreBikeId))
+                userTravel.objects.create(userId=foreUserId, bikeId=foreBikeId, lockStatus=True)
+            except Exception as e:
+                print("create userTravel info error : {}".format(e))
             return HttpResponse('yes')
         else:
             return HttpResponse('no')
@@ -177,3 +185,8 @@ def getBikeLocationByid(request):
 
         # print("data values : {}".format(data.values()))
         return HttpResponse(json.dumps(return_list))
+
+
+def travelLog(request):
+    if request.method == 'GET':
+        return render_to_response("traveLogMap.html")
