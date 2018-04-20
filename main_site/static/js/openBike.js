@@ -22,7 +22,7 @@ $(document).ready(function(){
              $('#loading-infor').text('开锁失败-(╥_╥)');
         	}
         },
-        error:function(){
+        error:function(error){
             console.log(error);
         }
     });
@@ -71,7 +71,7 @@ function zoomSelectBike() {
             var lat = location_list[0];
             var lon = location_list[1];
             var point = new BMap.Point(lon, lat);
-            map.centerAndZoom(point, 20);
+            map.centerAndZoom(point, 30);
             var myIcon = new BMap.Icon("/static/img/map_bike.png", new BMap.Size(50, 50));
             var marker = new BMap.Marker(point,{
                 icon:myIcon
