@@ -93,6 +93,7 @@ var is_openBike = false;
             }
 
             function mapCreate() {
+                console.log("create");
 
                 map = new BMap.Map("showmap");
                 console.log("map info: ");
@@ -184,7 +185,6 @@ var is_openBike = false;
          $(document).ready(function() {
 
 
-             console.log("create");
 
 
              mapPageProcess = getLocation_useGeo(mapCreate);
