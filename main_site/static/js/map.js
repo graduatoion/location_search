@@ -186,14 +186,19 @@ var is_openBike = false;
 
 
 
+             console.log("create");
+
+
 
              mapPageProcess = getLocation_useGeo(mapCreate);
              document.querySelector(".btn-get").addEventListener('click', geoRelocate);
+
 
              //滑动屏幕时动态请求车辆的位置
              document.getElementById('showmap').addEventListener('touchmove', function (e) {
                  console.log('touching');
                  getViewRange(getBikeLocation);
+
 
              })
          });
