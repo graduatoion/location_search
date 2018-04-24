@@ -56,7 +56,7 @@ i{
 	width: 2rem;
 	height: 2rem;
 	display: inline-block;
-	background:url(../image/detail1.png);
+	background:url(/static/img/detail1.png);
 	position: absolute;
 	top: 1.25rem;
 	right: 1rem;
