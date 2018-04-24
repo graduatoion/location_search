@@ -35,8 +35,8 @@ class bikeLocationAdmin(admin.ModelAdmin):
 
 @admin.register(userTravel)
 class userTravelAdmin(admin.ModelAdmin):
-    list_display = ('userId', 'travelId', 'bikeId', 'openTime', 'endTime', 'lockStatus')
-    fields = ('userId', 'bikeId', 'lockStatus')
+    list_display = ('userId', 'travelId', 'bikeId', 'openDate', 'openTime', 'endTime', 'lockStatus')
+    fields = ('userId', 'bikeId', 'endTime', 'lockStatus')
 
 
 @admin.register(travelDetail)
