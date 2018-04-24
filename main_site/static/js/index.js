@@ -171,7 +171,8 @@
             }
         }});
         //扫码功能
-        $('#scan-code').click(function(){
+
+        $('#scan-code').one('click',function () {
             if(isLogin){
                 window.location.href="/main/scanQr/";
                 //进行扫码操作
@@ -181,6 +182,16 @@
                 $('#shade-login').show();
             }
         });
+        // $('#scan-code').click(function(){
+        //     if(isLogin){
+        //         window.location.href="/main/scanQr/";
+        //         //进行扫码操作
+        //     }else{
+        //         //跳转到登录页面
+        //         $('host-interface').hide();
+        //         $('#shade-login').show();
+        //     }
+        // });
         //退出登录
         $('#log-off').click(function(){
             $.ajax({
