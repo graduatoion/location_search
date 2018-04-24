@@ -26,8 +26,8 @@ $(document).ready(function(){
             console.log(error);
         }
     });
-    document.querySelector("#close_bike").addEventListener('click', closeBike);
-
+    //document.querySelector("#finish-trip").addEventListener('click', closeBike);
+    $('#finish-trip').one('click',closeBike)
 
          
 });
