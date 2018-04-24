@@ -1,5 +1,9 @@
+# coding=utf-8
 from django.shortcuts import render, render_to_response, HttpResponse
+from django.utils.timezone import now
+
 from main_site.models import bikeLocation, userInfomation, bikeData, userTravel, travelDetail
+import datetime
 import json
 import re
 from main_site import common
@@ -139,8 +143,13 @@ def openBike(request):
             try:
                 foreUserId = userInfomation.objects.get(userId=request.session['phoneId'])
                 foreBikeId = bikeData.objects.get(id=request.session['bike_id'])
-                print("foreBikeId:{}".format(foreBikeId))
-                userTravel.objects.create(userId=foreUserId, bikeId=foreBikeId, lockStatus=True)
+                createData = userTravel.objects.create(userId=foreUserId, bikeId=foreBikeId, lockStatus=True)
+                foreUserTravelId = userTravel.objects.get(travelId=createData.travelId)
+                bike_lon_lat = bikeLocation.objects.get(id=request.session['bike_id'])
+                travelDetail.objects.create(travelId=foreUserTravelId, lon=bike_lon_lat.bikeLongitude,
+                                            lat=bike_lon_lat.bikeLatitude)
+
+                request.session['travel_id'] = createData.travelId
             except Exception as e:
                 print("create userTravel info error : {}".format(e))
             return HttpResponse('yes')
@@ -152,14 +161,22 @@ def closeBike(request):
     if request.method == 'GET':
         try:
             common.BikeInfo.closeBike(port=request.session['bike_port'])
+
         except Exception as e:
             print("close bike error : {}".format(e))
             return HttpResponse("no")
         else:
+            foreUserTravelId = userTravel.objects.get(travelId=request.session['travel_id'])
+            bike_lon_lat = bikeLocation.objects.get(id=request.session['bike_id'])
+            travelDetail.objects.create(travelId=foreUserTravelId,
+                                        lon=bike_lon_lat.bikeLongitude, lat=bike_lon_lat.bikeLatitude)
+            userTravel.objects.filter(travelId=request.session['travel_id']).update(endTime=now())
+            return HttpResponse("yes")
+        finally:
             del request.session['bike_id']
             del request.session['bike_ip']
             del request.session['bike_port']
-            return HttpResponse("yes")
+            del request.session['travel_id']
 
 
 def guidePage(request):
@@ -187,6 +204,37 @@ def getBikeLocationByid(request):
         return HttpResponse(json.dumps(return_list))
 
 
-def travelLog(request):
+def myTrip(request):
     if request.method == 'GET':
-        return render_to_response("traveLogMap.html")
+        return render_to_response("myTrip/myTrip.html")
+
+
+def tripDetail(request):
+    if request.method == 'GET':
+        tripId = request.GET.get('tripId')
+        bikeId = request.GET.get('bikeId')
+        travelDetail.objects.filter(travelId=tripId)
+        print tripId, bikeId
+        return render_to_response("myTrip/detail.html")
+
+
+def getTripInfo(request):
+    if request.method == 'GET':
+        phoneId = request.session['phoneId']
+        foreUserInfo = userInfomation.objects.get(userId=phoneId)
+        data = userTravel.objects.filter(userId=foreUserInfo)
+
+        print data.values_list()
+        return_list = []
+        for i in data.values_list():
+            userId, travelId, bikeId, startDate, startTime, endTime, lockStatus = i
+            timeRange = datetime.timedelta(hours=endTime.hour, minutes=endTime.minute, seconds=endTime.second) - \
+                        datetime.timedelta(hours=startTime.hour, minutes=startTime.minute, seconds=endTime.second)
+            table_row = {'travelId': travelId, 'bikeId': bikeId,
+                           'startDate': "{}-{}-{}".format(startDate.year, startDate.month, startDate.day),
+                           'startTime': "{}:{}".format(startTime.hour, startTime.minute),
+                           'how_long_minute': timeRange.seconds / 60
+                           }
+            return_list.append(table_row)
+        json_list = json.dumps(return_list)
+        return HttpResponse(json_list)
