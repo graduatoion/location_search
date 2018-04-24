@@ -36,6 +36,7 @@ class userTravel(models.Model):
     userId = models.ForeignKey(userInfomation)
     travelId = models.AutoField(primary_key=True, null=False)
     bikeId = models.ForeignKey(bikeData)
+    openDate = models.DateField(auto_now_add=True)
     openTime = models.TimeField(auto_now_add=True)
     endTime = models.TimeField(null=True)
     lockStatus = models.BooleanField(default=0)
