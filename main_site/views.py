@@ -231,10 +231,19 @@ def getTripInfo(request):
             timeRange = datetime.timedelta(hours=endTime.hour, minutes=endTime.minute, seconds=endTime.second) - \
                         datetime.timedelta(hours=startTime.hour, minutes=startTime.minute, seconds=endTime.second)
             table_row = {'travelId': travelId, 'bikeId': bikeId,
-                           'startDate': "{}-{}-{}".format(startDate.year, startDate.month, startDate.day),
-                           'startTime': "{}:{}".format(startTime.hour, startTime.minute),
-                           'how_long_minute': timeRange.seconds / 60
-                           }
+                         'startDate': "{}-{}-{}".format(startDate.year, startDate.month, startDate.day),
+                         'startTime': "{}:{}".format(startTime.hour, startTime.minute),
+                         'how_long_minute': timeRange.seconds / 60
+                         }
             return_list.append(table_row)
         json_list = json.dumps(return_list)
         return HttpResponse(json_list)
+
+
+def getBikeHistoryPoint(request):
+    if request.method == 'POST':
+        tripId = request.POST.get('tripId')
+        data = travelDetail.objects.filter(travelId=tripId).order_by("timeStamp")
+        for i in data.values_list():
+            print(i)
+        return HttpResponse('ok')

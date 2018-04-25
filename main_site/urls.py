@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from main_site.views import main, getBikeLatLng, signUp, login, test_sign, \
     isLogin, getPhoneId, logOut, scanQr, openBike, guidePage, checkBikeStatus, \
-    getBikeLocationByid, closeBike, myTrip, tripDetail, getTripInfo
+    getBikeLocationByid, closeBike, myTrip, tripDetail, getTripInfo, getBikeHistoryPoint
 
 urlpatterns = [
     url(r'test/$', main),
@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'myTrip/$', myTrip),
     url(r'tripDetail/$', tripDetail),
     url(r'getTripInfo/$', getTripInfo),
+    url(r'getBikeHistoryPoint/$', getBikeHistoryPoint),
 
 ]
