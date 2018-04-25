@@ -243,7 +243,11 @@ def getTripInfo(request):
 def getBikeHistoryPoint(request):
     if request.method == 'POST':
         tripId = request.POST.get('tripId')
+        return_list = []
         data = travelDetail.objects.filter(travelId=tripId).order_by("timeStamp")
         for i in data.values_list():
-            print(i)
-        return HttpResponse('ok')
+            lon, lat = i[3], i[4]
+            location_tuple = (lon, lat)
+            return_list.append(location_tuple)
+
+        return HttpResponse(json.dumps(return_list))
