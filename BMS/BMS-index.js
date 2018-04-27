@@ -32,7 +32,7 @@
                     }
 		})
 
-	})
+	});
 
 	//监听整个地图区域的点击事件
 	map.addEventListener('click',function(e){
