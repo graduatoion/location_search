@@ -30,10 +30,18 @@ h1{
 .header-tip{
 	position: absolute;
 	top: 0;
-	right: 20px;
+	right: 12%;
 	line-height: 80px;
 	font-size: 16px;
 	
+}
+.header-exit{
+	position: absolute;
+	top: 0;
+	right: 6%;
+	line-height: 80px;
+	font-size: 16px;
+
 }
 .content{
 	position: relative;
