@@ -7,6 +7,9 @@ import datetime
 import json
 import re
 from main_site import common
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password, check_password
+from location_search.settings import SECRET_KEY
 
 
 def test_sign(request):
@@ -68,7 +71,8 @@ def getBikeLatLng(request):
         lat_right = request.POST.get("lat_right")
 
         data = bikeLocation.objects.filter(bikeLongitude__gt=lon_left).filter(bikeLongitude__lt=lon_right).filter(
-            bikeLatitude__gt=lat_left).filter(bikeLatitude__lt=lat_right).values("bikeLongitude", "bikeLatitude")
+            bikeLatitude__gt=lat_left).filter(bikeLatitude__lt=lat_right).values("bikeId", "bikeLongitude",
+                                                                                 "bikeLatitude")
 
         d = [i for i in data]
 
@@ -251,3 +255,68 @@ def getBikeHistoryPoint(request):
             return_list.append(location_tuple)
 
         return HttpResponse(json.dumps(return_list))
+
+
+def graphingAdmin_login(request):
+    if request.method == 'POST':
+        print request.POST
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        sha256pass = User.objects.filter(username=username).values('password')
+        sha256pass = [i['password'] for i in sha256pass]
+        isMatch = check_password(password, str(sha256pass[0]))
+
+        print isMatch
+        if isMatch:
+            request.session['admin_username'] = username
+
+            return HttpResponse('ok')
+        else:
+            return HttpResponse('no')
+
+
+def graphingAdmin(request):
+    if request.method == 'GET':
+        return render_to_response('graphlogin.html')
+
+
+def BMS(request):
+    if request.method == 'GET':
+        try:
+            username = request.session['admin_username']
+        except KeyError:
+            return render_to_response('graphlogin.html')
+        else:
+            return render_to_response('BMS-index.html')
+
+
+def getAdminUserName(request):
+    if request.method == 'GET':
+        admin_username = request.session['admin_username']
+        return HttpResponse(admin_username)
+
+
+def exitBMS(request):
+    print 'enter exitBMS'
+    if request.method == 'GET':
+        try:
+            del request.session['admin_username']
+        except Exception as e:
+            print(e)
+            return HttpResponse('no')
+        else:
+            print("yes")
+            return HttpResponse('ok')
+
+
+def removeBikeLocation(request):
+    if request.method == 'POST':
+        print(request.POST)
+        bikeId = request.POST.get('bikeId')
+        foreBikeId = bikeData.objects.get(id=bikeId)
+        try:
+            bikeLocation.objects.filter(bikeId=foreBikeId).delete()
+        except Exception as e:
+            return HttpResponse('no')
+        else:
+            return HttpResponse('ok')
