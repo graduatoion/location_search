@@ -23,7 +23,7 @@ SECRET_KEY = 'szj_!x4gz7*v-wna73(1lmtl7#$*^o2*ew6zlf0ig+y)&^wom1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.2.100', '192.168.0.105', '123.207.31.244', '127.0.0.1',u'www.movb.club']
+ALLOWED_HOSTS = ['192.168.42.198', '192.168.0.105', '123.207.31.244', '127.0.0.1',u'www.movb.club']
 
 # Application definition
 
