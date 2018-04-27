@@ -1,6 +1,10 @@
 import re
 import requests
 from threading import Thread
+from django.contrib.auth.models import User
+
+
+
 
 class common(object):
     def __init__(self):
@@ -43,7 +47,8 @@ class BikeInfo:
         return returnStatus
 
 
-
 bikeInfo = BikeInfo()
 
 commonObj = common()
+
+
