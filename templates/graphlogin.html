@@ -11,7 +11,7 @@
 	}
 	body{
 		width: 100%;
-		background-image: url(image/bg.jpg);
+		background-image: url(/static/BMS-image/bg.jpg);
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		
@@ -52,11 +52,11 @@
 <body>
 	<div class="login">
 		<h1>登录</h1>
-		<form>
+{#		<form>#}
   			<div class="form-group">
     			<label for="username">用户名:</label>
     			<span id="tip-username">用户名不能为空！</span>
-    			<input type="email" class="form-control" id="username" placeholder="Username">
+    			<input  class="form-control" id="username" placeholder="Username">
   			</div>
   			<div class="form-group">
     			<label for="password">密码:</label>
@@ -64,10 +64,10 @@
     			<input type="password" class="form-control" id="password" placeholder="Password">
   			</div>
   			<div id="form-group" class="pos-center">
-  				<button type="submit" class="btn btn-primary btn-default" id="login">登录</button>
-  				<div class="error-hint">用户名不存在或密码错误！</div>
+  				<button  class="btn btn-primary btn-default" id="login">登录</button>
+  				<div class="error-hint" id="error-infor">用户名不存在或密码错误！</div>
   			</div>
-		</form>
+{#		</form>#}
 	</div>
 	<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
 	<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
@@ -84,7 +84,7 @@
                 },2000);
             }
             
-        })
+        });
 
         $('#password').blur(function(){
             var $password = $('#password').val();
@@ -99,20 +99,26 @@
 		//验证用户名是否存在
 		//验证用户名和密码是否匹配
 		$('#login').click(function(){
+		    var isLogin = false;
 			var $username = $('#username').val();
 			var $password = $('#password').val();
-			$.ajax({
-				type:'post',
+			console.log($username);
+			console.log($password);
+			var p = $.ajax({
+				type:'POST',
+                url:'/main/graphLogin/',
 				data:{
                     'username':$username,
                     'password':$password
                 },
                 success:function(data){
-                	if(data=="ok"){
+				    console.log(data);
+                	if(data==="ok"){
+                	    isLogin = true;
                 		//跳转到主页面，并把用户名传过去（让它显示在主页面中）
-                		window.location.href="";
+                		//window.location.href="";
                 	}
-                	if(data=="no"){
+                	if(data==="no"){
                 		//提示示用户名或密码错误，并把输入框内的文字都清空
                 		$('#error-infor').show();
                 			setTimeout(function(){
@@ -122,10 +128,16 @@
                 		}
                 	
                 },
-                error:function(){
-                	console.log(error);
+                error:function(error){
+                	console.log('error info : ',error);
                 }
-			})
+			});
+            p.then(function (value) {
+               if(isLogin){
+                   window.location.href = '/main/BMS/'
+               }
+            })
+
 		})
 	})
 	</script>
