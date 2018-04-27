@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理系统</title>
+	<link rel="stylesheet" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+	<link rel="stylesheet" href="BMS-style.css">
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ayNGk6jqeEfH7sDIztpvlaLk2iPuI7jg"></script>
+</head>
+<body>
+	<header>
+		<h1>后台管理系统</h1>
+		<p class="header-tip">欢迎<span id="username"> username </span>登入该系统(◦˙▽˙◦)</p>
+	</header>
+	<!--内容区域-->
+	<div class="content">
+		<div class="position-item">
+			<!--搜索区域-->
+			<div class="search">
+    			<div class="input-group">
+      				<input type="text" class="form-control" placeholder="请输入您所要查询的地点" id="search-keywords">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default" type="button" id="search-click">搜索</button>
+      				</span>
+   			 	</div>
+  			</div>
+  			<!-- <div class="menu">
+  				<h3>数据管理</h3>
+  				<button type="button" class="btn btn-info btn-location" id="addBike">添加车辆</button>
+  			</div> -->
+		</div>
+		<!--地图展示区域-->
+  		<div id="allmap"></div>
+	</div>
+	<!--添加车辆信息的模态框-->
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="add" aria-labelledby="add-bike-infor">
+  		<div class="modal-dialog modal-lg" role="document">
+    		<div class="modal-content">
+    			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        			<h4 class="modal-title" id="myModalLabel">添加车辆</h4>
+      			 </div>
+      			 <div class="modal-body">
+        			<form>
+          				<div class="form-group">
+            				<label for="bike-id" class="control-label">车辆ID：</label>
+            				<input type="text" class="form-control" id="bike-id">
+          				</div>
+        			</form>
+      			</div>
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        			<button type="button" class="btn btn-primary" id="sure-add">确定</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+
+	<!--修改车辆信息的模态框-->
+	<div class="modal fade bs-example-modal-lg" id="modify" tabindex="-1" role="dialog" aria-labelledby="modify-bike-infor">
+  		<div class="modal-dialog modal-lg" role="document">
+    		<div class="modal-content">
+    			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        			<h4 class="modal-title" id="myModalLabel">修改车辆信息</h4>
+      			 </div>
+      			 <div class="modal-body">
+        			<form>
+          				<div class="form-group">
+            				<label for="modify-id" class="control-label">车辆ID：</label>
+            				<input type="text" class="form-control" id="modify-id">
+          				</div>
+          				<div class="form-group">
+            				<label for="bike-longitude" class="control-label">车辆经度：</label>
+            				<input type="text" class="form-control" id="bike-longitude">
+          				</div>
+          				<div class="form-group">
+            				<label for="bike-latitude" class="control-label">车辆纬度：</label>
+            				<input type="text" class="form-control" id="bike-latitude">
+          				</div>
+          				<button type="button" class="btn btn-primary" id="sure-delete">删除</button>
+        			</form>
+      			</div>
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        			<button type="button" class="btn btn-primary" id="sure-modify">确定</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+	<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+	<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+	<script src="BMS-index.js"></script>
+</body>
+</html>
