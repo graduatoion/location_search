@@ -42,27 +42,41 @@ function getBikePoint(point_list){
 
 }
 $(document).ready(function () {
-	var map = new BMap.Map("map-detail");    // 创建Map实例
+	let map = new BMap.Map("map-detail");    // 创建Map实例
 	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-    var point_list = [];
+    let point_list = [];
 
 	console.log(startDate);
 	$('#bike-id').text(bikeId);
 	$('#start-time').text(startTime);
 	$('#cycling-time').text(cycling_time);
 	$('#current-time').text(startDate);
-	var p = getBikePoint(point_list);
+	let p = getBikePoint(point_list);
     p.then(function () {
         console.log(point_list);
-        var i;
-        var saving_walking = [];
+        let i;
+        let saving_walking = [];
         for(i=0;i<point_list.length-1;i++){
-            var walking = new BMap.WalkingRoute(map,{renderOptions:{map:map,autoViewPort:true}});
+            let walking = new BMap.WalkingRoute(map,{renderOptions:{map:map,autoViewPort:true}});
             walking.search(point_list[i],point_list[i+1]);
-            if(i !== 0 || i !== point_list.length-2){
-                saving_walking.push(walking)
-            }
+            saving_walking.push(walking)
         }
+        for(let i=0;i<saving_walking.length;i++){
+            saving_walking[i].setMarkersSetCallback(function (data) {
+                if(i===0){
+                    ;
+                }
+                else if(i===saving_walking-1){
+                    ;
+                }
+                else{
+                    map.removeOverlay(data[0].marker);
+                    map.removeOverlay(data[1].marker);
+                }
+
+            });
+        }
+        console.log('bike history point: ' + point_list.length);
         console.log(saving_walking)
     })
 });
