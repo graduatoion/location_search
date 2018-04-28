@@ -43,7 +43,33 @@
         p.then(function () {
             $('#modify').modal('hide');
         });
-        })
+        });
+        $('#sure-modify').click(function () {
+            var lat = $('#bike-latitude').val();
+            var lon = $('#bike-longitude').val();
+            $.ajax({
+                type:'POST',
+                data:{
+                    "id":bike_id,
+                    "lat":lat,
+                    "lon":lon
+                },
+                url: '/main/updateBikeLocation/',
+                success: function (data) {
+                    if(data === 'ok'){
+                        alert('修改成功');
+                    }
+                    else if(data === 'no'){
+
+                        alert('与库中数据一致，未修改')
+
+                    }
+                },
+                error:function () {
+                    console.log('updateBikeLocation error')
+                }
+            })
+        });
     }
  	function getViewRange(callBack){
                 var range = map.getBounds();//获取地图的可视区域
@@ -278,7 +304,7 @@
 
 
 		//默认显示模态框，方便测试。测试完之后删除。
-		//$('#add').modal('show');
+		$('#add').modal('show');
 		//$('#modify').modal('show');
     });
 

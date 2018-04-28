@@ -320,3 +320,25 @@ def removeBikeLocation(request):
             return HttpResponse('no')
         else:
             return HttpResponse('ok')
+
+
+def updateBikeLocation(request):
+    if request.method == 'POST':
+        lon = request.POST.get('lon')
+        lat = request.POST.get('lat')
+        bikeId = request.POST.get('id')
+        foreBikeId = bikeData.objects.get(id=bikeId)
+        data = bikeLocation.objects.filter(bikeId=foreBikeId)
+        r_lon, r_lat = None, None
+        for i in data.values_list():
+            r_lon, r_lat = i[2], i[3]
+        print str(r_lon) == str(lon)
+        print r_lat == lon
+
+        if str(r_lon) == str(lon) and str(r_lat) == str(lat):
+
+            return HttpResponse('no')
+        else:
+            bikeLocation.objects.filter(bikeId=foreBikeId).update(bikeLongitude=lon, bikeLatitude=lat)
+
+            return HttpResponse('ok')
