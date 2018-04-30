@@ -177,11 +177,13 @@ def closeBike(request):
             userTravel.objects.filter(travelId=request.session['travel_id']).update(endTime=now())
             return HttpResponse("yes")
         finally:
-            del request.session['bike_id']
-            del request.session['bike_ip']
-            del request.session['bike_port']
-            del request.session['travel_id']
-
+            try:
+                del request.session['bike_id']
+                del request.session['bike_ip']
+                del request.session['bike_port']
+                del request.session['travel_id']
+            except Exception as e:
+                print(e)
 
 def guidePage(request):
     if request.method == 'GET':
@@ -232,12 +234,21 @@ def getTripInfo(request):
         return_list = []
         for i in data.values_list():
             userId, travelId, bikeId, startDate, startTime, endTime, lockStatus = i
-            timeRange = datetime.timedelta(hours=endTime.hour, minutes=endTime.minute, seconds=endTime.second) - \
+            timeRange = 0
+            timeRange_sencond = 0
+            try:
+                timeRange = datetime.timedelta(hours=endTime.hour, minutes=endTime.minute, seconds=endTime.second) - \
                         datetime.timedelta(hours=startTime.hour, minutes=startTime.minute, seconds=endTime.second)
+            except Exception as e:
+                print(e)
+                timeRange_sencond = 0
+            else :
+                timeRange_sencond = timeRange.seconds / 60
+
             table_row = {'travelId': travelId, 'bikeId': bikeId,
                          'startDate': "{}-{}-{}".format(startDate.year, startDate.month, startDate.day),
                          'startTime': "{}:{}".format(startTime.hour, startTime.minute),
-                         'how_long_minute': timeRange.seconds / 60
+                         'how_long_minute': timeRange_sencond
                          }
             return_list.append(table_row)
         json_list = json.dumps(return_list)

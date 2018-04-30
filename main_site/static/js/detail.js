@@ -42,26 +42,26 @@ function getBikePoint(point_list){
 
 }
 $(document).ready(function () {
-	let map = new BMap.Map("map-detail");    // 创建Map实例
+	var map = new BMap.Map("map-detail");    // 创建Map实例
 	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-    let point_list = [];
+    var point_list = [];
 
 	console.log(startDate);
 	$('#bike-id').text(bikeId);
 	$('#start-time').text(startTime);
 	$('#cycling-time').text(cycling_time);
 	$('#current-time').text(startDate);
-	let p = getBikePoint(point_list);
+	var p = getBikePoint(point_list);
     p.then(function () {
         console.log(point_list);
-        let i;
-        let saving_walking = [];
+        var i;
+        var saving_walking = [];
         for(i=0;i<point_list.length-1;i++){
-            let walking = new BMap.WalkingRoute(map,{renderOptions:{map:map,autoViewPort:true}});
+            var walking = new BMap.WalkingRoute(map,{renderOptions:{map:map,autoViewPort:true}});
             walking.search(point_list[i],point_list[i+1]);
             saving_walking.push(walking)
         }
-        for(let i=0;i<saving_walking.length;i++){
+        for(var i=0;i<saving_walking.length;i++){
             saving_walking[i].setMarkersSetCallback(function (data) {
                 if(i===0){
                     ;
