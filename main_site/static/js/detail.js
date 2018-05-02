@@ -9,7 +9,7 @@ var tripId = getQueryString('tripId');
 var startTime = getQueryString('startTime');
 var cycling_time = getQueryString('cycling_time');
 var startDate = getQueryString('startDate');
-
+let point_l = [];
 
 function getQueryString(name) {
 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -59,24 +59,29 @@ $(document).ready(function () {
         for(i=0;i<point_list.length-1;i++){
             var walking = new BMap.WalkingRoute(map,{renderOptions:{map:map,autoViewPort:true}});
             walking.search(point_list[i],point_list[i+1]);
-            saving_walking.push(walking)
-        }
-        for(var i=0;i<saving_walking.length;i++){
-            saving_walking[i].setMarkersSetCallback(function (data) {
-                if(i===0){
-                    ;
-                }
-                else if(i===saving_walking-1){
-                    ;
-                }
-                else{
+             walking.setMarkersSetCallback(function (data) {
                     map.removeOverlay(data[0].marker);
-                    map.removeOverlay(data[1].marker);
-                }
-
-            });
+                    map.removeOverlay(data[1].marker)
+                })
         }
         console.log('bike history point: ' + point_list.length);
-        console.log(saving_walking)
+    }).then(function () {
+        let start = new BMap.Point(point_list[0].lng,point_list[0].lat);
+        let end = new BMap.Point(point_list[point_list.length-1].lng,point_list[point_list.length-1].lat);
+        let startIcon = new BMap.Icon("/static/img/start_point.png", new BMap.Size(50, 50)); //更换图标
+        let endIcon = new BMap.Icon("/static/img/end_point.png", new BMap.Size(50,50));
+
+        let s_marker = new BMap.Marker(start,{
+            icon:startIcon
+        });
+        let e_marker = new BMap.Marker(end,{
+            icon:endIcon
+        });
+
+        map.addOverlay(s_marker);
+        map.addOverlay(e_marker);
+        console.log(e_marker);
+        console.log('test')
+
     })
 });
