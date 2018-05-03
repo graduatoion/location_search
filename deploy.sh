@@ -6,7 +6,7 @@ STATIC_ROOT=$(cat location_search/settings.py|grep STATIC_ROOT | cut -d ' ' -f 3
 #删除之前的静态文件
 rm -rf -v $STATIC_ROOT/*
 #部署当前的静态文件
-python ./manager.py collectstatic
+python ./manage.py collectstatic
 #关闭当前的uwsgi服务
 killall -9 uwsgi
 #运行uwsgi服务
