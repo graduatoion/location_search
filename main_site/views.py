@@ -145,15 +145,17 @@ def openBike(request):
             request.session['bike_port'] = bike_port
             print("bikeId : {}".format(bike_id))
             try:
+                print("开始创建detial表")
                 foreUserId = userInfomation.objects.get(userId=request.session['phoneId'])
                 foreBikeId = bikeData.objects.get(id=request.session['bike_id'])
                 createData = userTravel.objects.create(userId=foreUserId, bikeId=foreBikeId, lockStatus=True)
                 foreUserTravelId = userTravel.objects.get(travelId=createData.travelId)
-                bike_lon_lat = bikeLocation.objects.get(id=request.session['bike_id'])
+                bike_lon_lat = bikeLocation.objects.get(bikeId=foreBikeId)
                 travelDetail.objects.create(travelId=foreUserTravelId, lon=bike_lon_lat.bikeLongitude,
                                             lat=bike_lon_lat.bikeLatitude)
 
                 request.session['travel_id'] = createData.travelId
+                print("travel id is : {}".format(request.session['travel_id']))
             except Exception as e:
                 print("create userTravel info error : {}".format(e))
             return HttpResponse('yes')
@@ -171,7 +173,8 @@ def closeBike(request):
             return HttpResponse("no")
         else:
             foreUserTravelId = userTravel.objects.get(travelId=request.session['travel_id'])
-            bike_lon_lat = bikeLocation.objects.get(id=request.session['bike_id'])
+            foreBikeId = bikeData.objects.get(id=request.session['bike_id'])
+            bike_lon_lat = bikeLocation.objects.get(bikeId=foreBikeId)
             travelDetail.objects.create(travelId=foreUserTravelId,
                                         lon=bike_lon_lat.bikeLongitude, lat=bike_lon_lat.bikeLatitude)
             userTravel.objects.filter(travelId=request.session['travel_id']).update(endTime=now())
