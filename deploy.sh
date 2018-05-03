@@ -12,7 +12,7 @@ killall -9 uwsgi
 #运行uwsgi服务
 uwsgi_nums=$(ps aux|grep uwsgi | grep -v "grep" | wc -l)
 if [ $uwsgi_nums -eq 0 ];then
-    uwsgi ./${UWSGI_INI} 2&>1 /dev/null
+    nohup uwsgi ./${UWSGI_INI}  &
 else
 	echo "uwsgi already exist"
 fi
