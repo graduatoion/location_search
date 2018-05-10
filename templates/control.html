@@ -55,7 +55,7 @@
         document.getElementById('up').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'127.0.0.1:18000/forward',
+                url:'http://127.0.0.1:18000/forward',
                 success:function (data) {
                     console.log(data)
                 }
@@ -64,7 +64,7 @@
         document.getElementById('down').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'127.0.0.1:18000/down',
+                url:'http://127.0.0.1:18000/down',
                 success:function (data) {
                     console.log(data)
                 }
@@ -73,7 +73,7 @@
 document.getElementById('left').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'127.0.0.1:18000/left',
+                url:'http://127.0.0.1:18000/left',
                 success:function (data) {
                     console.log(data)
                 }
@@ -82,7 +82,7 @@ document.getElementById('left').addEventListener('click',function () {
 document.getElementById('right').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'127.0.0.1:18000/right',
+                url:'http://127.0.0.1:18000/right',
                 success:function (data) {
                     console.log(data)
                 }
