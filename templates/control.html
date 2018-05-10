@@ -1,0 +1,94 @@
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
+        <style type="text/css">
+            #up{
+                background:url(/static/img/up.png);
+                background-size:100% 100%;
+                margin-left: 39%;
+                margin-right: auto;
+                text-align: center;
+                width: 100px;
+                height: 100px;
+            }
+            #left{
+                background:url(/static/img/left.png);
+                background-size:100% 100%;
+                margin-left: 30%;
+                 width: 100px;
+                height: 100px;
+            }
+            #right{
+                background:url(/static/img/right.png);
+                background-size:100% 100%;
+                margin-left: 9%;
+                 width: 100px;
+                height: 100px;
+            }
+            #down{
+                background:url(/static/img/down.png);
+                background-size:100% 100%;
+                margin-left: 39%;
+                 width: 100px;
+                height: 100px;
+            }
+
+        </style>
+	</head>
+
+	<body>
+		<div>
+  			<input id="up" type="button" size="100px">
+		</div>
+		<div>
+  			<input id="left" type="button">
+  			<input id="right" type="button">
+		</div>
+		<div>
+  			<input id="down" type="button">
+		</div>
+    <script>
+        document.getElementById('up').addEventListener('click',function () {
+            $.ajax({
+                type:'GET',
+                url:'127.0.0.1:18000/forward',
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        });
+        document.getElementById('down').addEventListener('click',function () {
+            $.ajax({
+                type:'GET',
+                url:'127.0.0.1:18000/down',
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        });
+document.getElementById('left').addEventListener('click',function () {
+            $.ajax({
+                type:'GET',
+                url:'127.0.0.1:18000/left',
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        });
+document.getElementById('right').addEventListener('click',function () {
+            $.ajax({
+                type:'GET',
+                url:'127.0.0.1:18000/right',
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        })
+
+    </script>
+	</body>
+</html>

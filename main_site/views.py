@@ -188,6 +188,7 @@ def closeBike(request):
             except Exception as e:
                 print(e)
 
+
 def guidePage(request):
     if request.method == 'GET':
         return render_to_response('openBike.html')
@@ -241,11 +242,11 @@ def getTripInfo(request):
             timeRange_sencond = 0
             try:
                 timeRange = datetime.timedelta(hours=endTime.hour, minutes=endTime.minute, seconds=endTime.second) - \
-                        datetime.timedelta(hours=startTime.hour, minutes=startTime.minute, seconds=endTime.second)
+                            datetime.timedelta(hours=startTime.hour, minutes=startTime.minute, seconds=endTime.second)
             except Exception as e:
                 print(e)
                 timeRange_sencond = 0
-            else :
+            else:
                 timeRange_sencond = timeRange.seconds / 60
 
             table_row = {'travelId': travelId, 'bikeId': bikeId,
@@ -356,3 +357,8 @@ def updateBikeLocation(request):
             bikeLocation.objects.filter(bikeId=foreBikeId).update(bikeLongitude=lon, bikeLatitude=lat)
 
             return HttpResponse('ok')
+
+
+def controlBike(request):
+    if request.method == 'GET':
+        return render_to_response('control.html')
