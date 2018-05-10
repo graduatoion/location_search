@@ -1,8 +1,8 @@
 /*
 * @Author: Administrator
 * @Date:   2018-04-19 15:52:28
-* @Last Modified by:   Administrator
-* @Last Modified time: 2018-04-19 15:58:15
+* @Last Modified by:   sivartTravis
+* @Last Modified time: 2018-05-10 21:14:31
 */
 var bikeId = getQueryString('bikeId');
 var tripId = getQueryString('tripId');

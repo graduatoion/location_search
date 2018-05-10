@@ -304,7 +304,7 @@
 
 
 		//默认显示模态框，方便测试。测试完之后删除。
-		$('#add').modal('show');
+		//$('#add').modal('show');
 		//$('#modify').modal('show');
     });
 
