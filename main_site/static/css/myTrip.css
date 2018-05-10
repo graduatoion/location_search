@@ -1,8 +1,8 @@
 /*
 * @Author: Administrator
 * @Date:   2018-04-19 14:37:59
-* @Last Modified by:   Administrator
-* @Last Modified time: 2018-04-19 15:45:45
+* @Last Modified by:   sivartTravis
+* @Last Modified time: 2018-05-10 21:08:50
 */
 /*去除默认样式*/
 * {
@@ -53,8 +53,8 @@ h2{
 	margin-left: 5rem;
 }
 i{
-	width: 2rem;
-	height: 2rem;
+	width: 1.5rem;
+	height: 1.5rem;
 	display: inline-block;
 	background:url(/static/img/detail1.png);
 	position: absolute;
