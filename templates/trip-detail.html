@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>行程详情</title>
+	<style>
+	* {
+    	margin: 0;
+    	padding: 0;
+    	font-size: 16px;
+    	font-family:"Microsoft Yahei";
+  	}
+	h1{
+		font-size:30px;
+		height:80px;
+		line-height: 80px;
+		text-indent: 1em;
+		background:#6699CC;
+		opacity: 0.8;
+		color: #fff;
+	}
+	#map-detail{
+		height:550px;
+	}
+	.detail-infor{
+		height: 150px;
+		width: 400px;
+		margin: 30px auto;
+		background:white;
+		border: 2px solid #ccc;
+		border-radius: 20px;
+		position: fixed;
+		bottom: 0;
+		left: 30px;
+		opacity: 0.7;
+	}
+	.bike-id{
+		width: 240px;
+		margin-left: 80px;
+	}
+	.b-id span{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.bike-other{
+		height: 48px;
+		line-height: 48px;
+	}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ayNGk6jqeEfH7sDIztpvlaLk2iPuI7jg"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
+</head>
+<body>
+	<h1>行程详情</h1>
+	<div id="map-detail">
+	</div>
+	<div class="detail-infor">
+		<div class="bike-id">
+			<img src="/static/img/travelLogBike.png" height="64" width="64" alt="">
+			<div class="b-id">
+				<span>自行车ID:</span>
+				<span id="bike-id"></span>
+			</div>
+			<div class="bike-other">
+				<span id="start-time"></span>
+				<span id="cycling-time"></span>
+                <span>分钟</span>
+				<span id="current-time"></span>
+			</div>
+		</div>
+	</div>
+	<script>
+	var map = new BMap.Map("map-detail"); // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);// 初始化地图,设置中心点坐标和地图级别
+	</script>
+</body>
+</html>
