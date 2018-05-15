@@ -301,6 +301,9 @@
 
             })
         });
+	    document.getElementById('user_trip_detail').addEventListener('click',function () {
+			window.location.href='/userTrip/'
+        })
 
 
 		//默认显示模态框，方便测试。测试完之后删除。
