@@ -362,3 +362,11 @@ def updateBikeLocation(request):
 def controlBike(request):
     if request.method == 'GET':
         return render_to_response('control.html')
+
+
+def dir_control(request):
+    if request.method == 'GET':
+        dir = request.GET.get('dir')
+        print dir,type(dir)
+        common.BikeInfo.control(dir=str(dir))
+        return HttpResponse('ok')

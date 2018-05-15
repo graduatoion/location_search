@@ -2,7 +2,8 @@ from django.conf.urls import url, include
 from main_site.views import main, getBikeLatLng, signUp, login, test_sign, \
     isLogin, getPhoneId, logOut, scanQr, openBike, guidePage, checkBikeStatus, \
     getBikeLocationByid, closeBike, myTrip, tripDetail, getTripInfo, getBikeHistoryPoint, \
-    graphingAdmin_login, BMS, getAdminUserName, exitBMS, removeBikeLocation, updateBikeLocation
+    graphingAdmin_login, BMS, getAdminUserName, exitBMS, removeBikeLocation, updateBikeLocation, \
+    dir_control
 
 urlpatterns = [
     url(r'test/$', main),
@@ -28,5 +29,7 @@ urlpatterns = [
     url(r'getAdminUserName/$', getAdminUserName),
     url(r'exitBMS/$', exitBMS),
     url(r'^removeBikeLocation/$', removeBikeLocation),
-    url(r'^updateBikeLocation/$', updateBikeLocation)
+    url(r'^updateBikeLocation/$', updateBikeLocation),
+    url(r'^dir_control/$', dir_control),
+
 ]

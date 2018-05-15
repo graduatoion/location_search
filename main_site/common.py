@@ -46,6 +46,18 @@ class BikeInfo:
             returnStatus = True
         return returnStatus
 
+    @classmethod
+    def control(cls, port=18000, dir='up'):
+
+        url = 'http://127.0.0.1:{}/{}'.format(port, dir)
+        print(url)
+        try:
+            requests.get(url)
+        except Exception as e:
+            print e
+
+
+
 
 bikeInfo = BikeInfo()
 

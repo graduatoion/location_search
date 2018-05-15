@@ -6,33 +6,44 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style">
         <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
         <style type="text/css">
+            #con_par{
+                display:flex;
+                flex-direction:column;
+            }
+            #middle{
+                align-self: center;
+            }
+            #blank{
+                align-self: center;
+                width: 100px;
+                height: 100px;
+            }
+
             #up{
                 background:url(/static/img/up.png);
                 background-size:100% 100%;
-                margin-left: 39%;
-                margin-right: auto;
-                text-align: center;
+                align-self: center;
                 width: 100px;
                 height: 100px;
             }
             #left{
                 background:url(/static/img/left.png);
                 background-size:100% 100%;
-                margin-left: 30%;
-                 width: 100px;
+                margin-right: 50px;
+                width: 100px;
                 height: 100px;
             }
             #right{
                 background:url(/static/img/right.png);
                 background-size:100% 100%;
-                margin-left: 9%;
+                margin-left: 50px;
                  width: 100px;
                 height: 100px;
             }
             #down{
                 background:url(/static/img/down.png);
                 background-size:100% 100%;
-                margin-left: 39%;
+                align-self: center;
                  width: 100px;
                 height: 100px;
             }
@@ -41,21 +52,27 @@
 	</head>
 
 	<body>
-		<div>
-  			<input id="up" type="button" size="100px">
-		</div>
-		<div>
-  			<input id="left" type="button">
-  			<input id="right" type="button">
-		</div>
-		<div>
-  			<input id="down" type="button">
-		</div>
+
+        <div id="con_par">
+
+            <input id="up" type="button" size="100px">
+
+		    <div id="middle">
+  			    <input id="left" type="button">
+  			    <input id="right" type="button">
+		    </div>
+            <input id="down" type="button">
+
+        </div>
+
     <script>
         document.getElementById('up').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'http://127.0.0.1:18000/forward',
+                data:{
+                    "dir":"up"
+                },
+                url:'/main/dir_control/',
                 success:function (data) {
                     console.log(data)
                 }
@@ -64,7 +81,10 @@
         document.getElementById('down').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'http://127.0.0.1:18000/down',
+                data:{
+                    "dir":"down",
+                },
+                url:'/main/dir_control/',
                 success:function (data) {
                     console.log(data)
                 }
@@ -73,7 +93,10 @@
 document.getElementById('left').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'http://127.0.0.1:18000/left',
+                data:{
+                    "dir":"left"
+                },
+                url:'/main/dir_control/',
                 success:function (data) {
                     console.log(data)
                 }
@@ -82,7 +105,10 @@ document.getElementById('left').addEventListener('click',function () {
 document.getElementById('right').addEventListener('click',function () {
             $.ajax({
                 type:'GET',
-                url:'http://127.0.0.1:18000/right',
+                data:{
+                    "dir":"right"
+                },
+                url:'/main/dir_control/',
                 success:function (data) {
                     console.log(data)
                 }
