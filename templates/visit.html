@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="css/myTrip.css">
+	<title>邀请好友</title>
+	<style>
+	* {
+    	margin: 0;
+    	padding: 0;
+    	font-size: 16px;
+    	font-family:"Microsoft Yahei";
+  	}
+	a {
+    	text-decoration:none;
+    	outline: none;
+    	color: #000;
+   }
+	body{
+		background:#322F42;
+	}
+	h2{
+		height: 5rem;
+		line-height: 5rem;
+		text-indent: 1em;
+		font-size: 2rem;
+		color: #fff;
+	}
+	img{
+		width: 90%;
+		height: 10rem;
+		margin-left:5%;
+		margin-top:2rem; 
+		border-radius: .5rem;
+	}
+	.visit-friend{
+		width:7rem;
+		margin: 5rem auto;
+	}
+	#icon{
+		width: 5rem;
+		height: 5rem;
+		background-image: url(/static/img/link.png);
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		border-radius: 50%;
+		border:3px solid #d81e06;
+	}
+	#icon:hover{
+		opacity: 0.5;
+	}
+	.visit-friend p{
+		margin-top: 1rem;
+		display: block;
+		height:3rem;
+		line-height:3rem;
+		color:white;
+		font-size:1.5rem;
+		
+	}
+	#infor-copy{
+		color:white;
+		margin-left: 1rem;
+	}
+	</style>
+	
+</head>
+<body>
+	<h2>我的行程</h2> 
+	<img src="image/visit-banner.jpg" height="204" width="780" alt="">
+	 <div class="visit-friend" >
+	 	<div id="icon"></div>
+		<p class="copy-link" data-clipboard-text="www.movb.club/main/test/
+">复制链接</p>
+		
+	 </div> 
+	 <p id="infor-copy">已复制到剪切板，粘贴至浏览器即可访问!</p>
+	 <script src="/static/js/clipboard.min.js"></script>
+	 <script>
+	 	var clipboard = new ClipboardJS('.copy-link');
+	 	clipboard.on('success', function(e) {
+    		console.info('Text:', e.text);
+    		//提示已复制到剪切板，两秒后消失
+    		var  infor = document.getElementById('infor-copy');
+    		infor.style.display = 'block';
+    		setTimeout(function(){
+    			infor.style.display = 'none';
+    		},1000)
+		});
+	 </script>
+</body>
+</html>
