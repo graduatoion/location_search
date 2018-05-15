@@ -2,7 +2,8 @@
 from django.contrib import admin
 from main_site.models import bikeData, bikeLocation, userInfomation, userTravel, travelDetail
 
-
+admin.site.site_header = '基于移动互联网的位置跟踪系统--管理员端'
+admin.site.site_title = '后台数据管理系统'
 @admin.register(userInfomation)
 class userInfoAdmin(admin.ModelAdmin):
     list_display = ('userId', 'password', 'userSex', 'creditLevel')
@@ -42,3 +43,7 @@ class userTravelAdmin(admin.ModelAdmin):
 @admin.register(travelDetail)
 class tarvelDetialAdmin(admin.ModelAdmin):
     list_display = ('detailId', 'travelId', 'timeStamp', 'lon', 'lat')
+
+
+
+
