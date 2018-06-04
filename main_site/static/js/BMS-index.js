@@ -47,7 +47,8 @@
         $('#sure-modify').click(function () {
             var lat = $('#bike-latitude').val();
             var lon = $('#bike-longitude').val();
-            $.ajax({
+			var status=null;
+            var p= $.ajax({
                 type:'POST',
                 data:{
                     "id":bike_id,
@@ -57,17 +58,24 @@
                 url: '/main/updateBikeLocation/',
                 success: function (data) {
                     if(data === 'ok'){
-                        alert('修改成功');
+                    	status='ok';
                     }
                     else if(data === 'no'){
-
-                        alert('与库中数据一致，未修改')
+						status='no';
 
                     }
                 },
                 error:function () {
                     console.log('updateBikeLocation error')
                 }
+            });
+			p.then(function () {
+				if(status === 'ok'){
+					alert('修改成功')
+				}
+				else if(status === 'no'){
+					alert('错误，修改失败')
+				}
             })
         });
     }
